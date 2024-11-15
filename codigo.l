@@ -1,6 +1,26 @@
 %{
 #include <stdio.h>
 
+#define T_ASSIGN 1
+#define T_SEMICOLON 2
+#define T_KEYWORD 3
+#define T_FLOAT 4
+#define T_CHAR 5
+#define T_OPARI 6
+#define T_OPLOG 7
+#define T_OPREL 8
+#define T_CHAVESOPEN 9
+#define T_CHAVESCLOSE 10
+#define T_COMMA 11
+#define T_VAR 12
+#define T_SPACE 13
+#define T_STRING 14
+#define T_PARENTESISOPEN 15
+#define T_PARENTESISCLOSE 16
+#define T_COMMENT 17
+#define T_NEWLINE 18
+#define T_TAB 19
+
 int yywrap(void) {
     return 1;
 }
@@ -14,72 +34,67 @@ CARACTERE           '[@_#\+\-*/.: A-Za-z0-9]'
 
 %%
 
-{COMENTARIO}                { printf("Comentário: %s\n", yytext); }
+{COMENTARIO}                { printf("Token: %d, Comentário: %s\n", T_COMMENT, yytext); return T_COMMENT; }
 
-"="                         { printf("Operador de atribuição: %s\n", yytext); }
-";"                         { printf("Fim de instrução: %s\n", yytext); }
+"="                         { printf("Token: %d, Operador de atribuição: %s\n", T_ASSIGN, yytext); return T_ASSIGN; }
+";"                         { printf("Token: %d, Fim de instrução: %s\n", T_SEMICOLON, yytext); return T_SEMICOLON; }
 
-"FLOAT"                     { printf("Palavra reservada: FLOAT\n"); }
-"CHAR"                      { printf("Palavra reservada: CHAR\n"); }
-"LISTA"                     { printf("Palavra reservada: LISTA\n"); }
-"BOOL"                      { printf("Palavra reservada: BOOL\n"); }
+"FLOAT"                     { printf("Token: %d, Palavra reservada: FLOAT\n", T_KEYWORD); return T_KEYWORD; }
+"CHAR"                      { printf("Token: %d, Palavra reservada: CHAR\n", T_KEYWORD); return T_KEYWORD; }
+"LISTA"                     { printf("Token: %d, Palavra reservada: LISTA\n", T_KEYWORD); return T_KEYWORD; }
+"BOOL"                      { printf("Token: %d, Palavra reservada: BOOL\n", T_KEYWORD); return T_KEYWORD; }
 
-"CONST"                     { printf("Palavra reservada: CONST\n"); }
+"CONST"                     { printf("Token: %d, Palavra reservada: CONST\n", T_KEYWORD); return T_KEYWORD; }
 
-"LER"                       { printf("Palavra reservada: LER\n"); }
-"ESCREVER"                  { printf("Palavra reservada: ESCREVER\n"); }
+"LER"                       { printf("Token: %d, Palavra reservada: LER\n", T_KEYWORD); return T_KEYWORD; }
+"ESCREVER"                  { printf("Token: %d, Palavra reservada: ESCREVER\n", T_KEYWORD); return T_KEYWORD; }
 
-"SE"                        { printf("Palavra reservada: SE\n"); }
-"ENTAO"                     { printf("Palavra reservada: ENTAO\n"); }
-"SENAO"                     { printf("Palavra reservada: SENAO\n"); }
-"ENQUANTO"                  { printf("Palavra reservada: ENQUANTO\n"); }
-"FACA"                      { printf("Palavra reservada: FACA\n"); }
+"SE"                        { printf("Token: %d, Palavra reservada: SE\n", T_KEYWORD); return T_KEYWORD; }
+"ENTAO"                     { printf("Token: %d, Palavra reservada: ENTAO\n", T_KEYWORD); return T_KEYWORD; }
+"SENAO"                     { printf("Token: %d, Palavra reservada: SENAO\n", T_KEYWORD); return T_KEYWORD; }
+"ENQUANTO"                  { printf("Token: %d, Palavra reservada: ENQUANTO\n", T_KEYWORD); return T_KEYWORD; }
+"FACA"                      { printf("Token: %d, Palavra reservada: FACA\n", T_KEYWORD); return T_KEYWORD; }
 
-"PROGRAMA"                  { printf("Palavra reservada: PROGRAMA\n"); }
-"PREX"                      { printf("Palavra reservada: PREX\n"); }
+"PROGRAMA"                  { printf("Token: %d, Palavra reservada: PROGRAMA\n", T_KEYWORD); return T_KEYWORD; }
+"PREX"                      { printf("Token: %d, Palavra reservada: PREX\n", T_KEYWORD); return T_KEYWORD; }
 
-{NUMERO}                    { printf("Numero: %s\n", yytext); }
+{NUMERO}                    { printf("Token: %d, Número: %s\n", T_FLOAT, yytext); return T_FLOAT; }
 
-{CARACTERE}                 { printf("Caractere: %s\n", yytext); }
+{CARACTERE}                 { printf("Token: %d, Caractere: %s\n", T_CHAR, yytext); return T_CHAR; }
 
-'$'                         { printf("Fim da lista: %s\n", yytext); }
+'$'                         { printf("Token: %d, Fim da lista: %s\n", T_CHAR, yytext); return T_CHAR; }
 
-"+"                         { printf("Operador aritmético: %s\n", yytext); }
-"-"                         { printf("Operador aritmético: %s\n", yytext); }
-"*"                         { printf("Operador aritmético: %s\n", yytext); }
-"/"                         { printf("Operador aritmético: %s\n", yytext); }
+"+"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+"-"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+"*"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+"/"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
 
-"^"                         { printf("Operador lógico: %s\n", yytext); }
-"|"                         { printf("Operador lógico: %s\n", yytext); }
-"~"                         { printf("Operador lógico: %s\n", yytext); }
+"^"                         { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
+"|"                         { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
+"~"                         { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 
-">"                         { printf("Operador de comparação: %s\n", yytext); }
-"<"                         { printf("Operador de comparação: %s\n", yytext); }
-"=="                        { printf("Operador de comparação: %s\n", yytext); }
-"~="                        { printf("Operador de comparação: %s\n", yytext); }
+">"                         { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
+"<"                         { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
+"=="                        { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
+"~="                        { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 
-"{"                         { printf("Chaves abertura: %s\n", yytext); }
-"}"                         { printf("Chaves fechamento: %s\n", yytext); }
+"{"                         { printf("Token: %d, Chave abertura: %s\n", T_CHAVESOPEN, yytext); return T_CHAVESOPEN; }
+"}"                         { printf("Token: %d, Chave fechamento: %s\n", T_CHAVESCLOSE, yytext); return T_CHAVESCLOSE; }
 
-"("                         { printf("Parênteses abertura: %s\n", yytext); }
-")"                         { printf("Parênteses fechamento: %s\n", yytext); }
+"("                         { printf("Token: %d, Parêntese abertura: %s\n", T_PARENTESISOPEN, yytext); return T_PARENTESISOPEN; }
+")"                         { printf("Token: %d, Parêntese fechamento: %s\n", T_PARENTESISCLOSE, yytext); return T_PARENTESISCLOSE; }
 
-"\t"                        { printf("Tabulação: '\\t'\n"); }
+"\t"                        { printf("Token: %d, Tabulação: '\\t'\n", T_TAB); return T_TAB; }
 
-" "                         { printf("Espaço: '%s'\n", yytext); }
-"\n"                        { printf("Quebra de linha: \\n\n"); }
+" "                         { printf("Token: %d, Espaço: '%s'\n", T_SPACE, yytext); return T_SPACE; }
+"\n"                        { printf("Token: %d, Quebra de linha: \\n\n", T_NEWLINE); return T_NEWLINE; }
 
-","                         { printf("Vírgula: %s\n", yytext); }
+","                         { printf("Token: %d, Vírgula: %s\n", T_COMMA, yytext); return T_COMMA; }
 
-{VARIAVEL}+                 { printf("Variável: %s\n", yytext); }
+{VARIAVEL}+                 { printf("Token: %d, Variável: %s\n", T_VAR, yytext); return T_VAR; }
 
-{STRING}                    { 
-                                for (int i = 1; i < strlen(yytext) - 1; i++) {
-                                    printf("Caractere: '%c'\n", yytext[i]);
-                                }
-                                printf("Caractere: '$'\n");
-                            }
-                            
+{STRING}                    { printf("Token: %d, String: %s\n", T_STRING, yytext); return T_STRING; }
+
 %%
 
 int main() {
