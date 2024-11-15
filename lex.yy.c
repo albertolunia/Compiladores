@@ -1364,7 +1364,7 @@ YY_DECL
 		}
 
 	{
-#line 13 "codigo.l"
+#line 15 "codigo.l"
 
 
 #line 1371 "lex.yy.c"
@@ -1427,217 +1427,222 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 15 "codigo.l"
+#line 17 "codigo.l"
 { printf("Comentário: %s\n", yytext); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "codigo.l"
+#line 19 "codigo.l"
 { printf("Operador de atribuição: %s\n", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "codigo.l"
+#line 20 "codigo.l"
 { printf("Fim de instrução: %s\n", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 20 "codigo.l"
+#line 22 "codigo.l"
 { printf("Palavra reservada: FLOAT\n"); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "codigo.l"
+#line 23 "codigo.l"
 { printf("Palavra reservada: CHAR\n"); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 22 "codigo.l"
+#line 24 "codigo.l"
 { printf("Palavra reservada: LISTA\n"); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 23 "codigo.l"
+#line 25 "codigo.l"
 { printf("Palavra reservada: BOOL\n"); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 25 "codigo.l"
+#line 27 "codigo.l"
 { printf("Palavra reservada: CONST\n"); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 27 "codigo.l"
+#line 29 "codigo.l"
 { printf("Palavra reservada: LER\n"); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 28 "codigo.l"
+#line 30 "codigo.l"
 { printf("Palavra reservada: ESCREVER\n"); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 30 "codigo.l"
+#line 32 "codigo.l"
 { printf("Palavra reservada: SE\n"); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 31 "codigo.l"
+#line 33 "codigo.l"
 { printf("Palavra reservada: ENTAO\n"); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 32 "codigo.l"
+#line 34 "codigo.l"
 { printf("Palavra reservada: SENAO\n"); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 33 "codigo.l"
+#line 35 "codigo.l"
 { printf("Palavra reservada: ENQUANTO\n"); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 34 "codigo.l"
+#line 36 "codigo.l"
 { printf("Palavra reservada: FACA\n"); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 36 "codigo.l"
+#line 38 "codigo.l"
 { printf("Palavra reservada: PROGRAMA\n"); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 37 "codigo.l"
+#line 39 "codigo.l"
 { printf("Palavra reservada: PREX\n"); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 39 "codigo.l"
+#line 41 "codigo.l"
 { printf("Numero: %s\n", yytext); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 41 "codigo.l"
+#line 43 "codigo.l"
 { printf("Caractere: %s\n", yytext); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 42 "codigo.l"
+#line 45 "codigo.l"
 { printf("Fim da lista: %s\n", yytext); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 44 "codigo.l"
+#line 47 "codigo.l"
 { printf("Operador aritmético: %s\n", yytext); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 45 "codigo.l"
+#line 48 "codigo.l"
 { printf("Operador aritmético: %s\n", yytext); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 46 "codigo.l"
+#line 49 "codigo.l"
 { printf("Operador aritmético: %s\n", yytext); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 47 "codigo.l"
+#line 50 "codigo.l"
 { printf("Operador aritmético: %s\n", yytext); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 49 "codigo.l"
+#line 52 "codigo.l"
 { printf("Operador lógico: %s\n", yytext); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 50 "codigo.l"
+#line 53 "codigo.l"
 { printf("Operador lógico: %s\n", yytext); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 51 "codigo.l"
+#line 54 "codigo.l"
 { printf("Operador lógico: %s\n", yytext); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 53 "codigo.l"
+#line 56 "codigo.l"
 { printf("Operador de comparação: %s\n", yytext); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 54 "codigo.l"
+#line 57 "codigo.l"
 { printf("Operador de comparação: %s\n", yytext); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 55 "codigo.l"
+#line 58 "codigo.l"
 { printf("Operador de comparação: %s\n", yytext); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 56 "codigo.l"
+#line 59 "codigo.l"
 { printf("Operador de comparação: %s\n", yytext); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 58 "codigo.l"
+#line 61 "codigo.l"
 { printf("Chaves abertura: %s\n", yytext); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 59 "codigo.l"
+#line 62 "codigo.l"
 { printf("Chaves fechamento: %s\n", yytext); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 61 "codigo.l"
+#line 64 "codigo.l"
 { printf("Parênteses abertura: %s\n", yytext); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 62 "codigo.l"
+#line 65 "codigo.l"
 { printf("Parênteses fechamento: %s\n", yytext); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 64 "codigo.l"
+#line 67 "codigo.l"
 { printf("Tabulação: '\\t'\n"); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 66 "codigo.l"
+#line 69 "codigo.l"
 { printf("Espaço: '%s'\n", yytext); }
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 67 "codigo.l"
+#line 70 "codigo.l"
 { printf("Quebra de linha: \\n\n"); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 69 "codigo.l"
+#line 72 "codigo.l"
 { printf("Vírgula: %s\n", yytext); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 71 "codigo.l"
+#line 74 "codigo.l"
 { printf("Variável: %s\n", yytext); }
 	YY_BREAK
 case 41:
 /* rule 41 can match eol */
 YY_RULE_SETUP
-#line 73 "codigo.l"
-{ printf("String: %s\n", yytext); }
+#line 76 "codigo.l"
+{ 
+                                for (int i = 1; i < strlen(yytext) - 1; i++) {
+                                    printf("Caractere: '%c'\n", yytext[i]);
+                                }
+                                printf("Caractere: '$'\n");
+                            }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 75 "codigo.l"
+#line 83 "codigo.l"
 ECHO;
 	YY_BREAK
-#line 1641 "lex.yy.c"
+#line 1646 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2642,7 +2647,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 75 "codigo.l"
+#line 83 "codigo.l"
 
 
 int main() {

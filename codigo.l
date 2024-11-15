@@ -9,10 +9,12 @@ int yywrap(void) {
 VARIAVEL            [A-Za-z][A-Za-z0-9]{0,9}
 NUMERO              [0-9]
 STRING              \"[^\"]*\"
+COMENTARIO          "\\"[^\\"]*\\""
+CARACTERE           '[@_#\+\-*/.: A-Za-z0-9]'
 
 %%
 
-"\\"[^\\"]*\\""             { printf("Comentário: %s\n", yytext); }
+{COMENTARIO}                { printf("Comentário: %s\n", yytext); }
 
 "="                         { printf("Operador de atribuição: %s\n", yytext); }
 ";"                         { printf("Fim de instrução: %s\n", yytext); }
@@ -38,7 +40,8 @@ STRING              \"[^\"]*\"
 
 {NUMERO}                    { printf("Numero: %s\n", yytext); }
 
-'[@_#\+\-*/.: A-Za-z0-9]'   { printf("Caractere: %s\n", yytext); }
+{CARACTERE}                 { printf("Caractere: %s\n", yytext); }
+
 '$'                         { printf("Fim da lista: %s\n", yytext); }
 
 "+"                         { printf("Operador aritmético: %s\n", yytext); }
@@ -61,7 +64,7 @@ STRING              \"[^\"]*\"
 "("                         { printf("Parênteses abertura: %s\n", yytext); }
 ")"                         { printf("Parênteses fechamento: %s\n", yytext); }
 
-"\t"                       { printf("Tabulação: '\\t'\n"); }
+"\t"                        { printf("Tabulação: '\\t'\n"); }
 
 " "                         { printf("Espaço: '%s'\n", yytext); }
 "\n"                        { printf("Quebra de linha: \\n\n"); }
@@ -70,8 +73,13 @@ STRING              \"[^\"]*\"
 
 {VARIAVEL}+                 { printf("Variável: %s\n", yytext); }
 
-{STRING}                    { printf("String: %s\n", yytext); }
-
+{STRING}                    { 
+                                for (int i = 1; i < strlen(yytext) - 1; i++) {
+                                    printf("Caractere: '%c'\n", yytext[i]);
+                                }
+                                printf("Caractere: '$'\n");
+                            }
+                            
 %%
 
 int main() {
