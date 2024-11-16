@@ -30,7 +30,8 @@ VARIAVEL            [A-Za-z][A-Za-z0-9]{0,9}
 NUMERO              [0-9]
 STRING              \"[^\"]*\"
 COMENTARIO          "\\"[^\\"]*\\""
-CARACTERE           '[@_#\+\-*/.: A-Za-z0-9]'
+CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
+
 
 %%
 
