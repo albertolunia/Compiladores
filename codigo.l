@@ -20,6 +20,7 @@
 #define T_COMMENT 17
 #define T_NEWLINE 18
 #define T_TAB 19
+#define T_NUMBER 20
 
 int yywrap(void) {
     return 1;
@@ -27,7 +28,8 @@ int yywrap(void) {
 %}
 
 VARIAVEL            [A-Za-z][A-Za-z0-9]{0,9}
-NUMERO              [0-9]
+NUMERO              [0-9][0-9]*
+FLOAT               0,[0-9]{1,2}|[+-]?[1-9][0-9]*,[0-9]{1,2}
 STRING              \"[^\"]*\"
 COMENTARIO          "\\"[^\\"]*\\""
 CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
@@ -59,7 +61,9 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 "PROGRAMA"                  { printf("Token: %d, Palavra reservada: PROGRAMA\n", T_KEYWORD); return T_KEYWORD; }
 "PREX"                      { printf("Token: %d, Palavra reservada: PREX\n", T_KEYWORD); return T_KEYWORD; }
 
-{NUMERO}                    { printf("Token: %d, Número: %s\n", T_FLOAT, yytext); return T_FLOAT; }
+{NUMERO}                    { printf("Token: %d, Número: %s\n", T_NUMBER, yytext); return T_NUMBER; }
+
+{FLOAT}                     { printf("Token: %d, Número float: %s\n", T_FLOAT, yytext); return T_FLOAT; }
 
 {CARACTERE}                 { printf("Token: %d, Caractere: %s\n", T_CHAR, yytext); return T_CHAR; }
 
