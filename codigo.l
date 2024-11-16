@@ -62,8 +62,6 @@ CARACTERE           '[@_#\+\-*/.: A-Za-z0-9]'
 
 {CARACTERE}                 { printf("Token: %d, Caractere: %s\n", T_CHAR, yytext); return T_CHAR; }
 
-'$'                         { printf("Token: %d, Fim da lista: %s\n", T_CHAR, yytext); return T_CHAR; }
-
 "+"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
 "-"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
 "*"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
@@ -91,7 +89,7 @@ CARACTERE           '[@_#\+\-*/.: A-Za-z0-9]'
 
 ","                         { printf("Token: %d, Vírgula: %s\n", T_COMMA, yytext); return T_COMMA; }
 
-{VARIAVEL}+                 { printf("Token: %d, Variável: %s\n", T_VAR, yytext); return T_VAR; }
+{VARIAVEL}                 { printf("Token: %d, Variável: %s\n", T_VAR, yytext); return T_VAR; }
 
 {STRING}                    { printf("Token: %d, String: %s\n", T_STRING, yytext); return T_STRING; }
 
