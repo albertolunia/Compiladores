@@ -1,30 +1,6 @@
 %{
 #include <stdio.h>
-
-#define T_ASSIGN 1
-#define T_SEMICOLON 2
-#define T_KEYWORD 3
-#define T_FLOAT 4
-#define T_CHAR 5
-#define T_OPARI 6
-#define T_OPLOG 7
-#define T_OPREL 8
-#define T_CHAVESOPEN 9
-#define T_CHAVESCLOSE 10
-#define T_COMMA 11
-#define T_VAR 12
-#define T_SPACE 13
-#define T_STRING 14
-#define T_PARENTESISOPEN 15
-#define T_PARENTESISCLOSE 16
-#define T_COMMENT 17
-#define T_NEWLINE 18
-#define T_TAB 19
-#define T_NUMBER 20
-
-int yywrap(void) {
-    return 1;
-}
+#include "codigo.tab.h"
 %}
 
 VARIAVEL            [A-Za-z][A-Za-z0-9]{0,9}
@@ -67,10 +43,10 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 {CARACTERE}                 { printf("Token: %d, Caractere: %s\n", T_CHAR, yytext); return T_CHAR; }
 
-"+"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
-"-"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
-"*"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
-"/"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+"+"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARIMAIS, yytext); return T_OPARIMAIS; }
+"-"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARIMENOS, yytext); return T_OPARIMENOS; }
+"*"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARIVEZES, yytext); return T_OPARIVEZES; }
+"/"                         { printf("Token: %d, Operador aritmético: %s\n", T_OPARIDIVISAO, yytext); return T_OPARIDIVISAO; }
 
 "^"                         { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 "|"                         { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
@@ -100,9 +76,6 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 %%
 
-int main() {
-    while (yylex() != 0){
-
-    } 
-    return 0;
+int yywrap(void) {
+    return 1;
 }

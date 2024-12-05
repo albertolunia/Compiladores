@@ -525,33 +525,9 @@ char *yytext;
 #line 1 "codigo.l"
 #line 2 "codigo.l"
 #include <stdio.h>
-
-#define T_ASSIGN 1
-#define T_SEMICOLON 2
-#define T_KEYWORD 3
-#define T_FLOAT 4
-#define T_CHAR 5
-#define T_OPARI 6
-#define T_OPLOG 7
-#define T_OPREL 8
-#define T_CHAVESOPEN 9
-#define T_CHAVESCLOSE 10
-#define T_COMMA 11
-#define T_VAR 12
-#define T_SPACE 13
-#define T_STRING 14
-#define T_PARENTESISOPEN 15
-#define T_PARENTESISCLOSE 16
-#define T_COMMENT 17
-#define T_NEWLINE 18
-#define T_TAB 19
-#define T_NUMBER 20
-
-int yywrap(void) {
-    return 1;
-}
-#line 554 "lex.yy.c"
-#line 555 "lex.yy.c"
+#include "codigo.tab.h"
+#line 530 "lex.yy.c"
+#line 531 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -768,10 +744,10 @@ YY_DECL
 		}
 
 	{
-#line 38 "codigo.l"
+#line 14 "codigo.l"
 
 
-#line 775 "lex.yy.c"
+#line 751 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -831,217 +807,217 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 40 "codigo.l"
+#line 16 "codigo.l"
 { printf("Token: %d, Comentário: %s\n", T_COMMENT, yytext); return T_COMMENT; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 42 "codigo.l"
+#line 18 "codigo.l"
 { printf("Token: %d, Operador de atribuição: %s\n", T_ASSIGN, yytext); return T_ASSIGN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 43 "codigo.l"
+#line 19 "codigo.l"
 { printf("Token: %d, Fim de instrução: %s\n", T_SEMICOLON, yytext); return T_SEMICOLON; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 45 "codigo.l"
+#line 21 "codigo.l"
 { printf("Token: %d, Palavra reservada: FLOAT\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 46 "codigo.l"
+#line 22 "codigo.l"
 { printf("Token: %d, Palavra reservada: CHAR\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 47 "codigo.l"
+#line 23 "codigo.l"
 { printf("Token: %d, Palavra reservada: LISTA\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 48 "codigo.l"
+#line 24 "codigo.l"
 { printf("Token: %d, Palavra reservada: BOOL\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 50 "codigo.l"
+#line 26 "codigo.l"
 { printf("Token: %d, Palavra reservada: CONST\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 52 "codigo.l"
+#line 28 "codigo.l"
 { printf("Token: %d, Palavra reservada: LER\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 53 "codigo.l"
+#line 29 "codigo.l"
 { printf("Token: %d, Palavra reservada: ESCREVER\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 55 "codigo.l"
+#line 31 "codigo.l"
 { printf("Token: %d, Palavra reservada: SE\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 56 "codigo.l"
+#line 32 "codigo.l"
 { printf("Token: %d, Palavra reservada: ENTAO\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 57 "codigo.l"
+#line 33 "codigo.l"
 { printf("Token: %d, Palavra reservada: SENAO\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 58 "codigo.l"
+#line 34 "codigo.l"
 { printf("Token: %d, Palavra reservada: ENQUANTO\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 59 "codigo.l"
+#line 35 "codigo.l"
 { printf("Token: %d, Palavra reservada: FACA\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 61 "codigo.l"
+#line 37 "codigo.l"
 { printf("Token: %d, Palavra reservada: PROGRAMA\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 62 "codigo.l"
+#line 38 "codigo.l"
 { printf("Token: %d, Palavra reservada: PREX\n", T_KEYWORD); return T_KEYWORD; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 64 "codigo.l"
+#line 40 "codigo.l"
 { printf("Token: %d, Número: %s\n", T_NUMBER, yytext); return T_NUMBER; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 66 "codigo.l"
+#line 42 "codigo.l"
 { printf("Token: %d, Número float: %s\n", T_FLOAT, yytext); return T_FLOAT; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 68 "codigo.l"
+#line 44 "codigo.l"
 { printf("Token: %d, Caractere: %s\n", T_CHAR, yytext); return T_CHAR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 70 "codigo.l"
+#line 46 "codigo.l"
 { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 71 "codigo.l"
+#line 47 "codigo.l"
 { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 72 "codigo.l"
+#line 48 "codigo.l"
 { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 73 "codigo.l"
+#line 49 "codigo.l"
 { printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 75 "codigo.l"
+#line 51 "codigo.l"
 { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 76 "codigo.l"
+#line 52 "codigo.l"
 { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 77 "codigo.l"
+#line 53 "codigo.l"
 { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 79 "codigo.l"
+#line 55 "codigo.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 80 "codigo.l"
+#line 56 "codigo.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 81 "codigo.l"
+#line 57 "codigo.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 82 "codigo.l"
+#line 58 "codigo.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 84 "codigo.l"
+#line 60 "codigo.l"
 { printf("Token: %d, Chave abertura: %s\n", T_CHAVESOPEN, yytext); return T_CHAVESOPEN; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 85 "codigo.l"
+#line 61 "codigo.l"
 { printf("Token: %d, Chave fechamento: %s\n", T_CHAVESCLOSE, yytext); return T_CHAVESCLOSE; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 87 "codigo.l"
+#line 63 "codigo.l"
 { printf("Token: %d, Parêntese abertura: %s\n", T_PARENTESISOPEN, yytext); return T_PARENTESISOPEN; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 88 "codigo.l"
+#line 64 "codigo.l"
 { printf("Token: %d, Parêntese fechamento: %s\n", T_PARENTESISCLOSE, yytext); return T_PARENTESISCLOSE; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 90 "codigo.l"
+#line 66 "codigo.l"
 { printf("Token: %d, Tabulação: '\\t'\n", T_TAB); return T_TAB; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 92 "codigo.l"
+#line 68 "codigo.l"
 { printf("Token: %d, Espaço: '%s'\n", T_SPACE, yytext); return T_SPACE; }
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 93 "codigo.l"
+#line 69 "codigo.l"
 { printf("Token: %d, Quebra de linha: \\n\n", T_NEWLINE); return T_NEWLINE; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 95 "codigo.l"
+#line 71 "codigo.l"
 { printf("Token: %d, Vírgula: %s\n", T_COMMA, yytext); return T_COMMA; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 97 "codigo.l"
+#line 73 "codigo.l"
 { printf("Token: %d, Variável: %s\n", T_VAR, yytext); return T_VAR; }
 	YY_BREAK
 case 41:
 /* rule 41 can match eol */
 YY_RULE_SETUP
-#line 99 "codigo.l"
+#line 75 "codigo.l"
 { printf("Token: %d, String: %s\n", T_STRING, yytext); return T_STRING; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 101 "codigo.l"
+#line 77 "codigo.l"
 ECHO;
 	YY_BREAK
-#line 1045 "lex.yy.c"
+#line 1021 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2046,13 +2022,10 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 101 "codigo.l"
+#line 77 "codigo.l"
 
 
-int main() {
-    while (yylex() != 0){
-
-    } 
-    return 0;
+int yywrap(void) {
+    return 1;
 }
 
