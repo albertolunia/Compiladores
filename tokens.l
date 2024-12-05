@@ -2,45 +2,6 @@
 #include <stdio.h>
 #include "bison.tab.h"
 
-#define T_ASSIGN 1
-#define T_SEMICOLON 2
-#define T_IDENTIFIER 3
-#define T_KEYWORD 4
-#define T_FLOAT 5
-#define T_CHAR 6
-#define T_BOOL 7
-#define T_OPLOG 9
-#define T_OPREL 10
-#define T_CHAVES 11
-#define T_BACKSLASH 12
-#define T_COMMA 13
-#define T_VAR 14
-#define T_STRING 16
-#define T_PARENTESIS 17
-#define T_COMMENT 20
-#define T_LIST 21
-#define T_MAIS 22
-#define T_MENOS 23
-#define T_VEZES 24
-#define T_DIVISAO 25
-#define T_NUMBER 26
-#define T_CHAVESOPEN 27
-#define T_CHAVESCLOSE 28
-#define T_PARENTESISOPEN 29
-#define T_PARENTESISCLOSE 30
-#define T_CONST 31
-#define T_ENTRADA 32
-#define T_SAIDA 33
-#define T_OPARI 34
-#define T_SE 35
-#define T_ENTAO 36
-#define T_SENAO 37
-#define T_ENQUANTO 38
-#define T_FACA 39
-#define T_PROGRAMA 40
-#define T_PREX 41
-
-
 %}
 
 VARIAVEL            [A-Za-z][A-Za-z0-9]{0,9}
@@ -75,7 +36,7 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 "ENQUANTO"                  { printf("Token: %d, Palavra reservada: ENQUANTO\n", T_ENQUANTO); return T_ENQUANTO; }
 "FACA"                      { printf("Token: %d, Palavra reservada: FACA\n", T_FACA); return T_FACA; }
 
-"PROGRAMA"                  { printf("Token lido: T_PROGRAMA (%s)\n", yytext); return T_PROGRAMA; }
+"PROGRAMA"                  { printf("Token: %d, Palavra reservada: PROGRAMA\n", T_PROGRAMA); return T_PROGRAMA; }
 
 "PREX"                      { printf("Token: %d, Palavra reservada: PREX\n", T_PREX); return T_PREX; }
 
