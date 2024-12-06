@@ -11,23 +11,35 @@ void yyerror(const char *s);
 %token T_COMMENT T_ASSIGN T_SEMICOLON T_KEYWORD T_LIST T_CONST T_ENTRADA T_SAIDA T_SE T_ENTAO T_SENAO T_ENQUANTO T_FACA T_PROGRAMA T_PREX T_NUMBER T_FLOAT T_CHAR T_OPARI T_OPLOG T_OPREL
 %token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA T_VAR T_STRING
 
-%right T_SEMICOLON
-
 %start programa
 
 %%
 
 programa: T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes declara_variaveis bloco_codigos T_CHAVESCLOSE
     | T_PROGRAMA T_PREX T_CHAVESOPEN declara_variaveis bloco_codigos T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes bloco_codigos T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN bloco_codigos T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes declara_variaveis T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_variaveis T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN T_CHAVESCLOSE
     ;
 
 declara_constantes: constante
     | declara_constantes constante
     ;
 
-constante: T_CONST T_KEYWORD T_VAR T_FLOAT T_SEMICOLON
-    | T_CONST T_KEYWORD T_VAR T_STRING T_SEMICOLON
-    | T_CONST T_KEYWORD T_VAR T_CHAR T_SEMICOLON
+constante: T_CONST T_KEYWORD T_VAR valor T_SEMICOLON
+    ;
+
+valor: T_FLOAT
+    | T_STRING
+    | T_NUMBER
+    | chars
+    ;
+
+chars: T_CHAR
+    | chars T_CHAR
     ;
 
 declara_variaveis: variavel
@@ -38,11 +50,11 @@ variavel: declara_variavel
     | lista
     ;
 
-declara_variavel: T_KEYWORD lista_declara_variavel T_SEMICOLON
+declara_variavel: T_KEYWORD declara_lista T_SEMICOLON
     ;
 
-lista_declara_variavel: T_VAR
-    | lista_declara_variavel T_COMMA T_VAR
+declara_lista: T_VAR
+    | declara_lista T_COMMA T_VAR
     ;
 
 lista: T_LIST T_KEYWORD lista_listas T_SEMICOLON
@@ -56,12 +68,32 @@ bloco_codigos: codigo
     | bloco_codigos codigo
     ;
 
-codigo: T_VAR T_ASSIGN T_FLOAT T_SEMICOLON
-    | T_VAR T_ASSIGN T_STRING T_SEMICOLON
-    | T_VAR T_ASSIGN T_CHAR T_SEMICOLON
-    | T_ENTRADA T_VAR T_SEMICOLON
-    | T_SAIDA T_VAR T_SEMICOLON
-    | T_VAR T_ASSIGN T_OPARI T_VAR T_VAR T_SEMICOLON
+codigo: T_VAR T_ASSIGN valor T_SEMICOLON
+    | entrada
+    | saida
+    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON
+    ;
+
+sequencia: T_FLOAT
+    | sequencia T_FLOAT
+    | T_VAR
+    | sequencia T_VAR
+    ;
+
+entrada: T_ENTRADA lista_entradas T_SEMICOLON
+    ;
+
+lista_entradas: T_VAR
+    | lista_entradas T_COMMA T_VAR
+    ;
+
+saida: T_SAIDA lista_saidas T_SEMICOLON
+    ;
+
+lista_saidas: T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE
+    | T_VAR T_PARENTESISOPEN T_NUMBER T_COMMA T_NUMBER T_PARENTESISCLOSE
+    | T_VAR
+    | lista_saidas T_COMMA T_VAR
     ;
 
 %%

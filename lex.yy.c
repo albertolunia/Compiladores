@@ -816,7 +816,7 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 19 "tokens.l"
-{ printf("Token: %d, Operador de atribuição: %s\n", T_ASSIGN, yytext); return T_ASSIGN; }
+{ printf("="); return T_ASSIGN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP

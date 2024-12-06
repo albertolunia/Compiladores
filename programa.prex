@@ -1,6 +1,6 @@
 PROGRAMA PREX {
-	FLOAT n1, n2, n3, v4;
-	LISTA CHAR textoEntra(25), textoTest(10), asuas(31);
+	FLOAT n1, n2, soma;
+	LISTA CHAR textoEntra(25), textoSaida(10);
 	textoEntra = "Digite um numero real: \n";
 	textoSaida = "A soma e: ";
 	ESCREVER textoEntra;
