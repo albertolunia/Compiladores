@@ -1,3 +1,13 @@
-PROGRAMA PREX { 
-
+PROGRAMA PREX {
+	FLOAT n1;
+	LISTA CHAR textoEntra(25);
+	textoEntra = "Digite um numero real: \n";
+	textoSaida = "A soma e: ";
+	ESCREVER textoEntra;
+	LER n1;
+	ESCREVER textoEntra;
+	LER n2;
+	soma = + n1 n2;
+	ESCREVER textoSaida;
+	ESCREVER soma;
 }
