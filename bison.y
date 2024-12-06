@@ -17,12 +17,12 @@ void yyerror(const char *s);
 
 %%
 
-programa: T_PROGRAMA T_PREX T_CHAVESOPEN lista_constantes lista_variaveis bloco_codigos T_CHAVESCLOSE
-    | T_PROGRAMA T_PREX T_CHAVESOPEN lista_variaveis bloco_codigos T_CHAVESCLOSE
+programa: T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes declara_variaveis bloco_codigos T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_variaveis bloco_codigos T_CHAVESCLOSE
     ;
 
-lista_constantes: constante
-    | lista_constantes constante
+declara_constantes: constante
+    | declara_constantes constante
     ;
 
 constante: T_CONST T_KEYWORD T_VAR T_FLOAT T_SEMICOLON
@@ -30,17 +30,27 @@ constante: T_CONST T_KEYWORD T_VAR T_FLOAT T_SEMICOLON
     | T_CONST T_KEYWORD T_VAR T_CHAR T_SEMICOLON
     ;
 
-lista_variaveis: variavel
-    | lista_variaveis variavel
+declara_variaveis: variavel
+    | declara_variaveis variavel
     ;
 
-variavel: T_KEYWORD T_VAR T_SEMICOLON
-    | T_KEYWORD T_VAR T_ASSIGN T_FLOAT T_SEMICOLON
-    | T_KEYWORD T_VAR T_ASSIGN T_STRING T_SEMICOLON
-    | T_KEYWORD T_VAR T_ASSIGN T_CHAR T_SEMICOLON
-    | T_LIST T_KEYWORD T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE T_SEMICOLON
-    | T_KEYWORD T_VAR T_COMMA variavel
+variavel: declara_variavel
+    | lista
     ;
+
+declara_variavel: T_KEYWORD lista_declara_variavel T_SEMICOLON
+    ;
+
+lista_declara_variavel: T_VAR
+    | lista_declara_variavel T_COMMA T_VAR
+    ;
+
+lista: T_LIST T_KEYWORD lista_listas T_SEMICOLON
+     ;
+
+lista_listas: T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE
+               | lista_listas T_COMMA T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE
+               ;
 
 bloco_codigos: codigo
     | bloco_codigos codigo
