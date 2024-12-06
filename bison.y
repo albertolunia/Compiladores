@@ -104,6 +104,7 @@ void yyerror(const char *msg) {
 }
 
 int main() {
+    printf("#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n");
     yyparse();
     return 0;
 }

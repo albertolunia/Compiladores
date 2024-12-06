@@ -816,47 +816,47 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 19 "tokens.l"
-{ printf("="); return T_ASSIGN; }
+{ printf(" = "); return T_ASSIGN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 20 "tokens.l"
-{ printf("Token: %d, Fim de instrução: %s\n", T_SEMICOLON, yytext); return T_SEMICOLON; }
+{ printf(";\n\t"); return T_SEMICOLON; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 22 "tokens.l"
-{ printf("Token: %d, Palavra reservada: FLOAT\n", T_KEYWORD); return T_KEYWORD; }
+{ printf("float "); return T_KEYWORD; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 23 "tokens.l"
-{ printf("Token: %d, Palavra reservada: CHAR\n", T_KEYWORD); return T_KEYWORD; }
+{ printf("char "); return T_KEYWORD; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 24 "tokens.l"
-{ printf("Token: %d, Palavra reservada: BOOL\n", T_KEYWORD); return T_KEYWORD; }
+{ printf("bool "); return T_KEYWORD; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 26 "tokens.l"
-{ printf("Token: %d, Palavra reservada: LISTA\n", T_LIST); return T_LIST; }
+{ return T_LIST; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 28 "tokens.l"
-{ printf("Token: %d, Palavra reservada: CONST\n", T_CONST); return T_CONST; }
+{ printf("#define"); return T_CONST; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 30 "tokens.l"
-{ printf("Token: %d, Palavra reservada: LER\n", T_ENTRADA); return T_ENTRADA; }
+{ return T_ENTRADA; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 31 "tokens.l"
-{ printf("Token: %d, Palavra reservada: ESCREVER\n", T_SAIDA); return T_SAIDA; }
+{ return T_SAIDA; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
@@ -886,47 +886,47 @@ YY_RULE_SETUP
 case 16:
 YY_RULE_SETUP
 #line 39 "tokens.l"
-{ printf("Token: %d, Palavra reservada: PROGRAMA\n", T_PROGRAMA); return T_PROGRAMA; }
+{ printf("int "); return T_PROGRAMA; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 41 "tokens.l"
-{ printf("Token: %d, Palavra reservada: PREX\n", T_PREX); return T_PREX; }
+{ printf("main() "); return T_PREX; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 43 "tokens.l"
-{ printf("Token: %d, Número: %s\n", T_NUMBER, yytext); return T_NUMBER; }
+{ printf("%s", yytext); return T_NUMBER; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 45 "tokens.l"
-{ printf("Token: %d, Número float: %s\n", T_FLOAT, yytext); return T_FLOAT; }
+{ printf("%s", yytext); return T_FLOAT; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 47 "tokens.l"
-{ printf("Token: %d, Caractere: %s\n", T_CHAR, yytext); return T_CHAR; }
+{ printf("%s", yytext); return T_CHAR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 49 "tokens.l"
-{ printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+{ printf("+"); return T_OPARI; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 50 "tokens.l"
-{ printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+{ printf("-"); return T_OPARI; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 51 "tokens.l"
-{ printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+{ printf("*"); return T_OPARI; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 52 "tokens.l"
-{ printf("Token: %d, Operador aritmético: %s\n", T_OPARI, yytext); return T_OPARI; }
+{ printf("/"); return T_OPARI; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
@@ -966,38 +966,38 @@ YY_RULE_SETUP
 case 32:
 YY_RULE_SETUP
 #line 63 "tokens.l"
-{ printf("Token: %d, Chave abertura: %s\n", T_CHAVESOPEN, yytext); return T_CHAVESOPEN; }
+{ printf("{\n\t"); return T_CHAVESOPEN; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 64 "tokens.l"
-{ printf("Token: %d, Chave fechamento: %s\n", T_CHAVESCLOSE, yytext); return T_CHAVESCLOSE; }
+{ printf("\n\treturn 0;\n}\n"); return T_CHAVESCLOSE; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 66 "tokens.l"
-{ printf("Token: %d, Parêntese abertura: %s\n", T_PARENTESISOPEN, yytext); return T_PARENTESISOPEN; }
+{ printf("("); return T_PARENTESISOPEN; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 67 "tokens.l"
-{ printf("Token: %d, Parêntese fechamento: %s\n", T_PARENTESISCLOSE, yytext); return T_PARENTESISCLOSE; }
+{ printf(")"); return T_PARENTESISCLOSE; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 69 "tokens.l"
-{ printf("Token: %d, Vírgula: %s\n", T_COMMA, yytext); return T_COMMA; }
+{ printf(", "); return T_COMMA; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 71 "tokens.l"
-{ printf("Token: %d, Variável: %s\n", T_VAR, yytext); return T_VAR; }
+{ printf("%s", yytext); return T_VAR; }
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
 #line 73 "tokens.l"
-{ printf("Token: %d, String: %s\n", T_STRING, yytext); return T_STRING; }
+{ printf("%s", yytext); return T_STRING; }
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
