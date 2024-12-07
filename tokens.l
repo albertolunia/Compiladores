@@ -68,7 +68,10 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 ","                         { printf(", "); return T_COMMA; }
 
-{VARIAVEL}                  { printf("%s", yytext); return T_VAR; }
+{VARIAVEL}                  { yylval.str = strdup(yytext);
+                              printf("%s", yytext); 
+                              return T_VAR; 
+                            }
 
 {STRING}                    { printf("%s", yytext); return T_STRING; }
 

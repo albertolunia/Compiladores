@@ -1,13 +1,20 @@
 PROGRAMA PREX {
-	FLOAT n1, n2, soma;
-	LISTA CHAR textoEntra(25), textoSaida(10);
-	textoEntra = "Digite um numero real: \n";
-	textoSaida = "A soma e: ";
-	ESCREVER textoEntra;
-	LER n1;
-	ESCREVER textoEntra;
-	LER n2;
-	soma = + n1 n2;
-	ESCREVER textoSaida;
-	ESCREVER soma;
+    FLOAT nota1, nota2, peso1, peso2, soma, divisor, media;
+    
+    ESCREVER nota1;
+    LER nota1;
+    ESCREVER peso1;
+    LER peso1;
+    
+    ESCREVER nota2;
+    LER nota2;
+    ESCREVER peso2;
+    LER peso2;
+    
+    soma = * nota1 peso1;
+    divisor = + peso1 peso2;
+    soma = + soma * nota2 peso2;
+    media = / soma divisor;
+    
+    ESCREVER media;
 }

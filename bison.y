@@ -11,6 +11,12 @@ void yyerror(const char *s);
 %token T_COMMENT T_ASSIGN T_SEMICOLON T_KEYWORD T_LIST T_CONST T_ENTRADA T_SAIDA T_SE T_ENTAO T_SENAO T_ENQUANTO T_FACA T_PROGRAMA T_PREX T_NUMBER T_FLOAT T_CHAR T_OPARI T_OPLOG T_OPREL
 %token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA T_VAR T_STRING
 
+%union {
+    char *str;
+}
+
+%type <str> T_VAR lista_entradas lista_saidas T_FLOAT sequencia valor chars T_STRING T_NUMBER T_CHAR
+
 %start programa
 
 %%
@@ -68,32 +74,33 @@ bloco_codigos: codigo
     | bloco_codigos codigo
     ;
 
-codigo: T_VAR T_ASSIGN valor T_SEMICOLON
+codigo: T_VAR T_ASSIGN valor T_SEMICOLON { printf("%s = %s", $1, $3); }
     | entrada
     | saida
     | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON
     ;
 
-sequencia: T_FLOAT
-    | sequencia T_FLOAT
-    | T_VAR
-    | sequencia T_VAR
+sequencia: T_FLOAT { printf(" %s", $1); }
+    | sequencia T_FLOAT { printf(" %s", $2); }
+    | T_VAR { printf(" %s", $1); }
+    | sequencia T_VAR { printf(" %s", $1); }
+    | sequencia T_OPARI { printf(" %s", $1); }
     ;
 
-entrada: T_ENTRADA lista_entradas T_SEMICOLON
+entrada: T_ENTRADA lista_entradas T_SEMICOLON {printf("scanf(\"%%f\", &%s)", $2);}
     ;
 
-lista_entradas: T_VAR
-    | lista_entradas T_COMMA T_VAR
+lista_entradas: T_VAR { $$ = $1; }
+    | lista_entradas T_COMMA T_VAR { $$ = $3; }
     ;
 
-saida: T_SAIDA lista_saidas T_SEMICOLON
+saida: T_SAIDA lista_saidas T_SEMICOLON { printf("printf(\"%%f\", %s)", $2); }
     ;
 
 lista_saidas: T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE
     | T_VAR T_PARENTESISOPEN T_NUMBER T_COMMA T_NUMBER T_PARENTESISCLOSE
-    | T_VAR
-    | lista_saidas T_COMMA T_VAR
+    | T_VAR { $$ = $1; }
+    | lista_saidas T_COMMA T_VAR { $$ = $3; }
     ;
 
 %%

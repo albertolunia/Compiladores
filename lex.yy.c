@@ -991,31 +991,34 @@ YY_RULE_SETUP
 case 37:
 YY_RULE_SETUP
 #line 71 "tokens.l"
-{ printf("%s", yytext); return T_VAR; }
+{ yylval.str = strdup(yytext);
+                              printf("%s", yytext); 
+                              return T_VAR; 
+                            }
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 73 "tokens.l"
+#line 76 "tokens.l"
 { printf("%s", yytext); return T_STRING; }
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 75 "tokens.l"
+#line 78 "tokens.l"
 { /* Ignora espaços, tabulações e quebras de linha */ }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 77 "tokens.l"
+#line 80 "tokens.l"
 { printf("Caractere não reconhecido: '%s'\n", yytext); return -1; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 80 "tokens.l"
+#line 83 "tokens.l"
 ECHO;
 	YY_BREAK
-#line 1019 "lex.yy.c"
+#line 1022 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2020,7 +2023,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 80 "tokens.l"
+#line 83 "tokens.l"
 
 
 int yywrap(void) {
