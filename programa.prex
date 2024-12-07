@@ -1,8 +1,9 @@
 PROGRAMA PREX {
     FLOAT nota1, nota2, peso1, peso2, soma, divisor, media;
-    
+
     ESCREVER nota1;
-    LER nota1;
+    
+	LER nota1;
     ESCREVER peso1;
     LER peso1;
     

@@ -40,9 +40,13 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 "PREX"                      { printf("main() "); return T_PREX; }
 
-{NUMERO}                    { printf("%s", yytext); return T_NUMBER; }
+{NUMERO}                    { yylval.str = strdup(yytext); 
+                              return T_NUMBER; 
+                            }
 
-{FLOAT}                     { printf("%s", yytext); return T_FLOAT; }
+{FLOAT}                     { yylval.str = strdup(yytext); 
+                              return T_FLOAT; 
+                            }
 
 {CARACTERE}                 { printf("%s", yytext); return T_CHAR; }
 
@@ -69,7 +73,6 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 ","                         { printf(", "); return T_COMMA; }
 
 {VARIAVEL}                  { yylval.str = strdup(yytext);
-                              printf("%s", yytext); 
                               return T_VAR; 
                             }
 

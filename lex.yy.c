@@ -896,129 +896,132 @@ YY_RULE_SETUP
 case 18:
 YY_RULE_SETUP
 #line 43 "tokens.l"
-{ printf("%s", yytext); return T_NUMBER; }
+{ yylval.str = strdup(yytext); 
+                              return T_NUMBER; 
+                            }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 45 "tokens.l"
-{ printf("%s", yytext); return T_FLOAT; }
+#line 47 "tokens.l"
+{ yylval.str = strdup(yytext); 
+                              return T_FLOAT; 
+                            }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 47 "tokens.l"
+#line 51 "tokens.l"
 { printf("%s", yytext); return T_CHAR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 49 "tokens.l"
+#line 53 "tokens.l"
 { printf("+"); return T_OPARI; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 50 "tokens.l"
+#line 54 "tokens.l"
 { printf("-"); return T_OPARI; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 51 "tokens.l"
+#line 55 "tokens.l"
 { printf("*"); return T_OPARI; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 52 "tokens.l"
+#line 56 "tokens.l"
 { printf("/"); return T_OPARI; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 54 "tokens.l"
+#line 58 "tokens.l"
 { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 55 "tokens.l"
+#line 59 "tokens.l"
 { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 56 "tokens.l"
+#line 60 "tokens.l"
 { printf("Token: %d, Operador lógico: %s\n", T_OPLOG, yytext); return T_OPLOG; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 58 "tokens.l"
+#line 62 "tokens.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 59 "tokens.l"
+#line 63 "tokens.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 60 "tokens.l"
+#line 64 "tokens.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 61 "tokens.l"
+#line 65 "tokens.l"
 { printf("Token: %d, Operador de comparação: %s\n", T_OPREL, yytext); return T_OPREL; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 63 "tokens.l"
+#line 67 "tokens.l"
 { printf("{\n\t"); return T_CHAVESOPEN; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 64 "tokens.l"
+#line 68 "tokens.l"
 { printf("\n\treturn 0;\n}\n"); return T_CHAVESCLOSE; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 66 "tokens.l"
+#line 70 "tokens.l"
 { printf("("); return T_PARENTESISOPEN; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 67 "tokens.l"
+#line 71 "tokens.l"
 { printf(")"); return T_PARENTESISCLOSE; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 69 "tokens.l"
+#line 73 "tokens.l"
 { printf(", "); return T_COMMA; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 71 "tokens.l"
+#line 75 "tokens.l"
 { yylval.str = strdup(yytext);
-                              printf("%s", yytext); 
                               return T_VAR; 
                             }
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 76 "tokens.l"
+#line 79 "tokens.l"
 { printf("%s", yytext); return T_STRING; }
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 78 "tokens.l"
+#line 81 "tokens.l"
 { /* Ignora espaços, tabulações e quebras de linha */ }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 80 "tokens.l"
+#line 83 "tokens.l"
 { printf("Caractere não reconhecido: '%s'\n", yytext); return -1; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 83 "tokens.l"
+#line 86 "tokens.l"
 ECHO;
 	YY_BREAK
-#line 1022 "lex.yy.c"
+#line 1025 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2023,7 +2026,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 83 "tokens.l"
+#line 86 "tokens.l"
 
 
 int yywrap(void) {

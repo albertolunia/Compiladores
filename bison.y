@@ -38,14 +38,14 @@ declara_constantes: constante
 constante: T_CONST T_KEYWORD T_VAR valor T_SEMICOLON
     ;
 
-valor: T_FLOAT
-    | T_STRING
-    | T_NUMBER
-    | chars
+valor: T_FLOAT { $$ = $1; }
+    | T_STRING { $$ = $1; }
+    | T_NUMBER { $$ = $1; }
+    | chars 
     ;
 
-chars: T_CHAR
-    | chars T_CHAR
+chars: T_CHAR { $$ = $1; }
+    | chars T_CHAR { $$ = $1; }
     ;
 
 declara_variaveis: variavel
@@ -59,8 +59,8 @@ variavel: declara_variavel
 declara_variavel: T_KEYWORD declara_lista T_SEMICOLON
     ;
 
-declara_lista: T_VAR
-    | declara_lista T_COMMA T_VAR
+declara_lista: T_VAR { printf("%s", $1); }
+    | declara_lista T_COMMA T_VAR { printf("%s", $3); }
     ;
 
 lista: T_LIST T_KEYWORD lista_listas T_SEMICOLON
@@ -77,7 +77,7 @@ bloco_codigos: codigo
 codigo: T_VAR T_ASSIGN valor T_SEMICOLON { printf("%s = %s", $1, $3); }
     | entrada
     | saida
-    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON
+    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON { printf("%s", $1); }
     ;
 
 sequencia: T_FLOAT { printf(" %s", $1); }
