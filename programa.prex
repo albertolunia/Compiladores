@@ -13,6 +13,7 @@ PROGRAMA PREX {
     LER peso2;
     
     soma = * nota1 peso1;
+    soma = * 3,42 3,1;
     divisor = + peso1 peso2;
     soma = + soma * nota2 peso2;
     media = / soma divisor;

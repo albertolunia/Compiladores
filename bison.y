@@ -8,99 +8,75 @@ void yyerror(const char *s);
 #define YYDEBUG 1
 %}
 
-%token T_COMMENT T_ASSIGN T_SEMICOLON T_KEYWORD T_LIST T_CONST T_ENTRADA T_SAIDA T_SE T_ENTAO T_SENAO T_ENQUANTO T_FACA T_PROGRAMA T_PREX T_NUMBER T_FLOAT T_CHAR T_OPARI T_OPLOG T_OPREL
+%token T_ASSIGN T_SEMICOLON T_KEYWORD T_ENTRADA T_SAIDA T_PROGRAMA T_PREX T_FLOAT T_CHAR T_OPARI
 %token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA T_VAR T_STRING
 
 %union {
     char *str;
 }
 
-%type <str> T_VAR lista_entradas lista_saidas T_FLOAT sequencia valor chars T_STRING T_NUMBER T_CHAR
+%type <str> programa variavel declara_variaveis varias_variaveis bloco_codigos codigo sequencia entrada lista_entradas saida lista_saidas valor chars
+%type <str> T_ASSIGN T_SEMICOLON T_KEYWORD T_ENTRADA T_SAIDA T_PROGRAMA T_PREX T_FLOAT T_CHAR T_OPARI T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA T_VAR T_STRING
 
 %start programa
 
 %%
 
-programa: T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes declara_variaveis bloco_codigos T_CHAVESCLOSE
-    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_variaveis bloco_codigos T_CHAVESCLOSE
-    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes bloco_codigos T_CHAVESCLOSE
+programa: T_PROGRAMA T_PREX T_CHAVESOPEN declara_variaveis bloco_codigos T_CHAVESCLOSE
     | T_PROGRAMA T_PREX T_CHAVESOPEN bloco_codigos T_CHAVESCLOSE
-    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes declara_variaveis T_CHAVESCLOSE
-    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_variaveis T_CHAVESCLOSE
-    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_constantes T_CHAVESCLOSE
+    | T_PROGRAMA T_PREX T_CHAVESOPEN declara_variaveis T_CHAVESCLOSE 
     | T_PROGRAMA T_PREX T_CHAVESOPEN T_CHAVESCLOSE
-    ;
-
-declara_constantes: constante
-    | declara_constantes constante
-    ;
-
-constante: T_CONST T_KEYWORD T_VAR valor T_SEMICOLON
-    ;
-
-valor: T_FLOAT { $$ = $1; }
-    | T_STRING { $$ = $1; }
-    | T_NUMBER { $$ = $1; }
-    | chars 
-    ;
-
-chars: T_CHAR { $$ = $1; }
-    | chars T_CHAR { $$ = $1; }
     ;
 
 declara_variaveis: variavel
     | declara_variaveis variavel
     ;
 
-variavel: declara_variavel
-    | lista
+variavel: T_KEYWORD varias_variaveis T_SEMICOLON  
     ;
 
-declara_variavel: T_KEYWORD declara_lista T_SEMICOLON
+varias_variaveis: T_VAR { printf("%s", $1); }
+    | varias_variaveis T_COMMA T_VAR { printf("%s", $3); }
     ;
-
-declara_lista: T_VAR { printf("%s", $1); }
-    | declara_lista T_COMMA T_VAR { printf("%s", $3); }
-    ;
-
-lista: T_LIST T_KEYWORD lista_listas T_SEMICOLON
-     ;
-
-lista_listas: T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE
-               | lista_listas T_COMMA T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE
-               ;
 
 bloco_codigos: codigo
     | bloco_codigos codigo
     ;
 
-codigo: T_VAR T_ASSIGN valor T_SEMICOLON { printf("%s = %s", $1, $3); }
+codigo: T_VAR T_ASSIGN valor T_SEMICOLON { printf("%s", $1); }
+    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON 
     | entrada
     | saida
-    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON { printf("%s", $1); }
     ;
 
-sequencia: T_FLOAT { printf(" %s", $1); }
-    | sequencia T_FLOAT { printf(" %s", $2); }
-    | T_VAR { printf(" %s", $1); }
-    | sequencia T_VAR { printf(" %s", $1); }
-    | sequencia T_OPARI { printf(" %s", $1); }
+sequencia: T_VAR
+    | T_FLOAT
+    | sequencia T_FLOAT
+    | sequencia T_VAR
+    | sequencia T_OPARI
     ;
 
-entrada: T_ENTRADA lista_entradas T_SEMICOLON {printf("scanf(\"%%f\", &%s)", $2);}
+entrada: T_ENTRADA lista_entradas T_SEMICOLON
     ;
 
-lista_entradas: T_VAR { $$ = $1; }
-    | lista_entradas T_COMMA T_VAR { $$ = $3; }
+lista_entradas: T_VAR {printf("scanf(\"%%f\", &%s)", $1);}
+    | lista_entradas T_COMMA T_VAR
     ;
 
-saida: T_SAIDA lista_saidas T_SEMICOLON { printf("printf(\"%%f\", %s)", $2); }
+saida: T_SAIDA lista_saidas T_SEMICOLON
     ;
 
-lista_saidas: T_VAR T_PARENTESISOPEN T_NUMBER T_PARENTESISCLOSE
-    | T_VAR T_PARENTESISOPEN T_NUMBER T_COMMA T_NUMBER T_PARENTESISCLOSE
-    | T_VAR { $$ = $1; }
-    | lista_saidas T_COMMA T_VAR { $$ = $3; }
+lista_saidas: T_VAR { printf("printf(\"%%f\", %s)", $1); }
+    | lista_saidas T_COMMA T_VAR
+    ;
+
+valor: T_FLOAT
+    | T_STRING
+    | chars 
+    ;
+
+chars: T_CHAR
+    | chars T_CHAR
     ;
 
 %%
@@ -111,6 +87,7 @@ void yyerror(const char *msg) {
 }
 
 int main() {
+    // yydebug = 1;
     printf("#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n");
     yyparse();
     return 0;

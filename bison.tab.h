@@ -54,34 +54,23 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    T_COMMENT = 258,               /* T_COMMENT  */
-    T_ASSIGN = 259,                /* T_ASSIGN  */
-    T_SEMICOLON = 260,             /* T_SEMICOLON  */
-    T_KEYWORD = 261,               /* T_KEYWORD  */
-    T_LIST = 262,                  /* T_LIST  */
-    T_CONST = 263,                 /* T_CONST  */
-    T_ENTRADA = 264,               /* T_ENTRADA  */
-    T_SAIDA = 265,                 /* T_SAIDA  */
-    T_SE = 266,                    /* T_SE  */
-    T_ENTAO = 267,                 /* T_ENTAO  */
-    T_SENAO = 268,                 /* T_SENAO  */
-    T_ENQUANTO = 269,              /* T_ENQUANTO  */
-    T_FACA = 270,                  /* T_FACA  */
-    T_PROGRAMA = 271,              /* T_PROGRAMA  */
-    T_PREX = 272,                  /* T_PREX  */
-    T_NUMBER = 273,                /* T_NUMBER  */
-    T_FLOAT = 274,                 /* T_FLOAT  */
-    T_CHAR = 275,                  /* T_CHAR  */
-    T_OPARI = 276,                 /* T_OPARI  */
-    T_OPLOG = 277,                 /* T_OPLOG  */
-    T_OPREL = 278,                 /* T_OPREL  */
-    T_CHAVESOPEN = 279,            /* T_CHAVESOPEN  */
-    T_CHAVESCLOSE = 280,           /* T_CHAVESCLOSE  */
-    T_PARENTESISOPEN = 281,        /* T_PARENTESISOPEN  */
-    T_PARENTESISCLOSE = 282,       /* T_PARENTESISCLOSE  */
-    T_COMMA = 283,                 /* T_COMMA  */
-    T_VAR = 284,                   /* T_VAR  */
-    T_STRING = 285                 /* T_STRING  */
+    T_ASSIGN = 258,                /* T_ASSIGN  */
+    T_SEMICOLON = 259,             /* T_SEMICOLON  */
+    T_KEYWORD = 260,               /* T_KEYWORD  */
+    T_ENTRADA = 261,               /* T_ENTRADA  */
+    T_SAIDA = 262,                 /* T_SAIDA  */
+    T_PROGRAMA = 263,              /* T_PROGRAMA  */
+    T_PREX = 264,                  /* T_PREX  */
+    T_FLOAT = 265,                 /* T_FLOAT  */
+    T_CHAR = 266,                  /* T_CHAR  */
+    T_OPARI = 267,                 /* T_OPARI  */
+    T_CHAVESOPEN = 268,            /* T_CHAVESOPEN  */
+    T_CHAVESCLOSE = 269,           /* T_CHAVESCLOSE  */
+    T_PARENTESISOPEN = 270,        /* T_PARENTESISOPEN  */
+    T_PARENTESISCLOSE = 271,       /* T_PARENTESISCLOSE  */
+    T_COMMA = 272,                 /* T_COMMA  */
+    T_VAR = 273,                   /* T_VAR  */
+    T_STRING = 274                 /* T_STRING  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -94,7 +83,7 @@ union YYSTYPE
 
     char *str;
 
-#line 98 "bison.tab.h"
+#line 87 "bison.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
