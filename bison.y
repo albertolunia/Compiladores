@@ -8,15 +8,16 @@ void yyerror(const char *s);
 #define YYDEBUG 1
 %}
 
-%token T_ASSIGN T_SEMICOLON T_KEYWORD T_ENTRADA T_SAIDA T_PROGRAMA T_PREX T_FLOAT T_CHAR T_OPARI
-%token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA T_VAR T_STRING
+%token <str> T_VAR T_FLOAT T_CHAR T_STRING T_OPARI
+
+%token T_ASSIGN T_SEMICOLON T_KEYWORD T_ENTRADA T_SAIDA T_PROGRAMA T_PREX
+%token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA
 
 %union {
     char *str;
 }
 
-%type <str> programa variavel declara_variaveis varias_variaveis bloco_codigos codigo sequencia entrada lista_entradas saida lista_saidas valor chars
-%type <str> T_ASSIGN T_SEMICOLON T_KEYWORD T_ENTRADA T_SAIDA T_PROGRAMA T_PREX T_FLOAT T_CHAR T_OPARI T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA T_VAR T_STRING
+%type <str> valor varias_variaveis sequencia
 
 %start programa
 
@@ -32,7 +33,7 @@ declara_variaveis: variavel
     | declara_variaveis variavel
     ;
 
-variavel: T_KEYWORD varias_variaveis T_SEMICOLON  
+variavel: T_KEYWORD varias_variaveis T_SEMICOLON
     ;
 
 varias_variaveis: T_VAR { printf("%s", $1); }
@@ -44,7 +45,7 @@ bloco_codigos: codigo
     ;
 
 codigo: T_VAR T_ASSIGN valor T_SEMICOLON { printf("%s", $1); }
-    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON 
+    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON
     | entrada
     | saida
     ;
@@ -72,11 +73,6 @@ lista_saidas: T_VAR { printf("printf(\"%%f\", %s)", $1); }
 
 valor: T_FLOAT
     | T_STRING
-    | chars 
-    ;
-
-chars: T_CHAR
-    | chars T_CHAR
     ;
 
 %%

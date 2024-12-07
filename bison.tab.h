@@ -54,23 +54,23 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    T_ASSIGN = 258,                /* T_ASSIGN  */
-    T_SEMICOLON = 259,             /* T_SEMICOLON  */
-    T_KEYWORD = 260,               /* T_KEYWORD  */
-    T_ENTRADA = 261,               /* T_ENTRADA  */
-    T_SAIDA = 262,                 /* T_SAIDA  */
-    T_PROGRAMA = 263,              /* T_PROGRAMA  */
-    T_PREX = 264,                  /* T_PREX  */
-    T_FLOAT = 265,                 /* T_FLOAT  */
-    T_CHAR = 266,                  /* T_CHAR  */
-    T_OPARI = 267,                 /* T_OPARI  */
-    T_CHAVESOPEN = 268,            /* T_CHAVESOPEN  */
-    T_CHAVESCLOSE = 269,           /* T_CHAVESCLOSE  */
-    T_PARENTESISOPEN = 270,        /* T_PARENTESISOPEN  */
-    T_PARENTESISCLOSE = 271,       /* T_PARENTESISCLOSE  */
-    T_COMMA = 272,                 /* T_COMMA  */
-    T_VAR = 273,                   /* T_VAR  */
-    T_STRING = 274                 /* T_STRING  */
+    T_VAR = 258,                   /* T_VAR  */
+    T_FLOAT = 259,                 /* T_FLOAT  */
+    T_CHAR = 260,                  /* T_CHAR  */
+    T_STRING = 261,                /* T_STRING  */
+    T_OPARI = 262,                 /* T_OPARI  */
+    T_ASSIGN = 263,                /* T_ASSIGN  */
+    T_SEMICOLON = 264,             /* T_SEMICOLON  */
+    T_KEYWORD = 265,               /* T_KEYWORD  */
+    T_ENTRADA = 266,               /* T_ENTRADA  */
+    T_SAIDA = 267,                 /* T_SAIDA  */
+    T_PROGRAMA = 268,              /* T_PROGRAMA  */
+    T_PREX = 269,                  /* T_PREX  */
+    T_CHAVESOPEN = 270,            /* T_CHAVESOPEN  */
+    T_CHAVESCLOSE = 271,           /* T_CHAVESCLOSE  */
+    T_PARENTESISOPEN = 272,        /* T_PARENTESISOPEN  */
+    T_PARENTESISCLOSE = 273,       /* T_PARENTESISCLOSE  */
+    T_COMMA = 274                  /* T_COMMA  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -79,7 +79,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 14 "bison.y"
+#line 16 "bison.y"
 
     char *str;
 
