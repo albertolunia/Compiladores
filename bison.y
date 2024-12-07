@@ -8,9 +8,9 @@ void yyerror(const char *s);
 #define YYDEBUG 1
 %}
 
-%token <str> T_VAR T_FLOAT T_CHAR T_STRING T_OPARI
+%token <str> T_VAR T_FLOAT T_CHAR T_STRING T_OPARI T_ASSIGN T_SEMICOLON
 
-%token T_ASSIGN T_SEMICOLON T_KEYWORD T_ENTRADA T_SAIDA T_PROGRAMA T_PREX
+%token T_KEYWORD T_ENTRADA T_SAIDA T_PROGRAMA T_PREX
 %token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA
 
 %union {
@@ -50,11 +50,11 @@ codigo: T_VAR T_ASSIGN valor T_SEMICOLON { printf("%s", $1); }
     | saida
     ;
 
-sequencia: T_VAR
-    | T_FLOAT
-    | sequencia T_FLOAT
-    | sequencia T_VAR
-    | sequencia T_OPARI
+sequencia: T_VAR { printf("%s ", $1); }
+    | T_FLOAT { printf("%s ", $1); }
+    | sequencia T_FLOAT { printf("%s ", $2); }
+    | sequencia T_VAR { printf("%s ", $2); }
+    | sequencia T_OPARI { printf("%s ", $1); }
     ;
 
 entrada: T_ENTRADA lista_entradas T_SEMICOLON

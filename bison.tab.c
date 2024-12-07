@@ -1135,20 +1135,50 @@ yyreduce:
 #line 1136 "bison.tab.c"
     break;
 
+  case 17: /* sequencia: T_VAR  */
+#line 53 "bison.y"
+                 { printf("%s ", (yyvsp[0].str)); }
+#line 1142 "bison.tab.c"
+    break;
+
+  case 18: /* sequencia: T_FLOAT  */
+#line 54 "bison.y"
+              { printf("%s ", (yyvsp[0].str)); }
+#line 1148 "bison.tab.c"
+    break;
+
+  case 19: /* sequencia: sequencia T_FLOAT  */
+#line 55 "bison.y"
+                        { printf("%s ", (yyvsp[0].str)); }
+#line 1154 "bison.tab.c"
+    break;
+
+  case 20: /* sequencia: sequencia T_VAR  */
+#line 56 "bison.y"
+                      { printf("%s ", (yyvsp[0].str)); }
+#line 1160 "bison.tab.c"
+    break;
+
+  case 21: /* sequencia: sequencia T_OPARI  */
+#line 57 "bison.y"
+                        { printf("%s ", (yyvsp[-1].str)); }
+#line 1166 "bison.tab.c"
+    break;
+
   case 23: /* lista_entradas: T_VAR  */
 #line 63 "bison.y"
                       {printf("scanf(\"%%f\", &%s)", (yyvsp[0].str));}
-#line 1142 "bison.tab.c"
+#line 1172 "bison.tab.c"
     break;
 
   case 26: /* lista_saidas: T_VAR  */
 #line 70 "bison.y"
                     { printf("printf(\"%%f\", %s)", (yyvsp[0].str)); }
-#line 1148 "bison.tab.c"
+#line 1178 "bison.tab.c"
     break;
 
 
-#line 1152 "bison.tab.c"
+#line 1182 "bison.tab.c"
 
       default: break;
     }

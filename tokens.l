@@ -26,7 +26,7 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 "PREX"                      { printf("main() "); yylval.str = strdup(yytext); return T_PREX; }
 
-{FLOAT}                     { printf("%s", yytext); yylval.str = strdup(yytext); return T_FLOAT; }
+{FLOAT}                     { yylval.str = strdup(yytext); return T_FLOAT; }
 
 {CARACTERE}                 { printf("%s", yytext); yylval.str = strdup(yytext); return T_CHAR; }
 

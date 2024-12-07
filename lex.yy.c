@@ -834,7 +834,7 @@ YY_RULE_SETUP
 case 11:
 YY_RULE_SETUP
 #line 29 "tokens.l"
-{ printf("%s", yytext); yylval.str = strdup(yytext); return T_FLOAT; }
+{ yylval.str = strdup(yytext); return T_FLOAT; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
