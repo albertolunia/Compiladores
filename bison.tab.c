@@ -1136,7 +1136,7 @@ yyreduce:
 
   case 15: /* codigo: T_VAR T_ASSIGN expressao T_SEMICOLON  */
 #line 51 "bison.y"
-                                             { printf("%s = %s;\n", (yyvsp[-3].str), (yyvsp[-1].str)); (yyval.str) = (yyvsp[-3].str); }
+                                             { printf("\t%s = %s;\n", (yyvsp[-3].str), (yyvsp[-1].str)); (yyval.str) = (yyvsp[-3].str); }
 #line 1141 "bison.tab.c"
     break;
 
@@ -1150,7 +1150,7 @@ yyreduce:
 #line 59 "bison.y"
                                   { 
         char temp[100];
-        sprintf(temp, "%s %s %s", (yyvsp[-1].str), (yyvsp[-2].str), (yyvsp[0].str));
+        sprintf(temp, "(%s %s %s)", (yyvsp[-1].str), (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = strdup(temp);
     }
 #line 1157 "bison.tab.c"
@@ -1160,7 +1160,7 @@ yyreduce:
 #line 64 "bison.y"
                                   { 
         char temp[100];
-        sprintf(temp, "%s %s %s", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
+        sprintf(temp, "(%s %s %s)", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
         (yyval.str) = strdup(temp);
     }
 #line 1167 "bison.tab.c"
@@ -1180,25 +1180,25 @@ yyreduce:
 
   case 24: /* lista_entradas: T_VAR  */
 #line 78 "bison.y"
-                      {printf("scanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
+                      {printf("\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
 #line 1185 "bison.tab.c"
     break;
 
   case 25: /* lista_entradas: lista_entradas T_VAR  */
 #line 79 "bison.y"
-                           {printf("scanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
+                           {printf("\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
 #line 1191 "bison.tab.c"
     break;
 
   case 27: /* lista_saidas: T_VAR  */
 #line 85 "bison.y"
-                    { printf("printf(\"%%f\", %s);\n", (yyvsp[0].str)); }
+                    { printf("\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
 #line 1197 "bison.tab.c"
     break;
 
   case 28: /* lista_saidas: lista_saidas T_VAR  */
 #line 86 "bison.y"
-                         { printf("printf(\"%%f\", %s);\n", (yyvsp[0].str)); }
+                         { printf("\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
 #line 1203 "bison.tab.c"
     break;
 
@@ -1406,7 +1406,7 @@ void yyerror(const char *msg) {
 
 int main() {
     // yydebug = 1;
-    printf("#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n");
+    printf("#include <stdio.h>\n\n");
     yyparse();
     return 0;
 }

@@ -799,7 +799,7 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 18 "tokens.l"
-{ printf("float "); yylval.str = strdup(yytext); return T_KEYWORD; }
+{ printf("\tfloat "); yylval.str = strdup(yytext); return T_KEYWORD; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
@@ -869,7 +869,7 @@ YY_RULE_SETUP
 case 18:
 YY_RULE_SETUP
 #line 40 "tokens.l"
-{ printf("return 0\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
+{ printf("\treturn 0;\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP

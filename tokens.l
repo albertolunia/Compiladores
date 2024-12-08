@@ -15,7 +15,7 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 ";"                         { yylval.str = strdup(yytext); return T_SEMICOLON; }
 ","                         { yylval.str = strdup(yytext); return T_COMMA; }
 
-"FLOAT"                     { printf("float "); yylval.str = strdup(yytext); return T_KEYWORD; }
+"FLOAT"                     { printf("\tfloat "); yylval.str = strdup(yytext); return T_KEYWORD; }
 "CHAR"                      { printf("char "); yylval.str = strdup(yytext); return T_KEYWORD; }
 "BOOL"                      { printf("boolean "); yylval.str = strdup(yytext); return T_KEYWORD; }
 
@@ -37,7 +37,7 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 
 "{"                         { printf("{\n"); yylval.str = strdup(yytext); return T_CHAVESOPEN; }
-"}"                         { printf("return 0\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
+"}"                         { printf("\treturn 0;\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
 
 "("                         { yylval.str = strdup(yytext); return T_PARENTESISOPEN; }
 ")"                         { yylval.str = strdup(yytext); return T_PARENTESISCLOSE; }

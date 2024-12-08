@@ -48,7 +48,7 @@ bloco_codigos: codigo
     | bloco_codigos entradaSaida
     ;
 
-codigo: T_VAR T_ASSIGN expressao T_SEMICOLON { printf("%s = %s;\n", $1, $3); $$ = $1; }
+codigo: T_VAR T_ASSIGN expressao T_SEMICOLON { printf("\t%s = %s;\n", $1, $3); $$ = $1; }
     ;
 
 entradaSaida: entrada
@@ -58,12 +58,12 @@ entradaSaida: entrada
 expressao: operandos { $$ = $1; }
     | T_OPARI operandos operandos { 
         char temp[100];
-        sprintf(temp, "%s %s %s", $2, $1, $3);
+        sprintf(temp, "(%s %s %s)", $2, $1, $3);
         $$ = strdup(temp);
     }
     | expressao T_OPARI operandos { 
         char temp[100];
-        sprintf(temp, "%s %s %s", $1, $2, $3);
+        sprintf(temp, "(%s %s %s)", $1, $2, $3);
         $$ = strdup(temp);
     }
     ;
@@ -75,15 +75,15 @@ operandos: T_VAR { $$ = $1; }
 entrada: T_ENTRADA lista_entradas T_SEMICOLON
     ;
 
-lista_entradas: T_VAR {printf("scanf(\"%%f\", &%s);\n", $1);}
-    | lista_entradas T_VAR {printf("scanf(\"%%f\", &%s);\n", $2);}
+lista_entradas: T_VAR {printf("\tscanf(\"%%f\", &%s);\n", $1);}
+    | lista_entradas T_VAR {printf("\tscanf(\"%%f\", &%s);\n", $2);}
     ;
 
 saida: T_SAIDA lista_saidas T_SEMICOLON
     ;
 
-lista_saidas: T_VAR { printf("printf(\"%%f\", %s);\n", $1); }
-    | lista_saidas T_VAR { printf("printf(\"%%f\", %s);\n", $2); }
+lista_saidas: T_VAR { printf("\tprintf(\"%%f\\n\", %s);\n", $1); }
+    | lista_saidas T_VAR { printf("\tprintf(\"%%f\\n\", %s);\n", $2); }
     ;
 
 %%
@@ -95,7 +95,7 @@ void yyerror(const char *msg) {
 
 int main() {
     // yydebug = 1;
-    printf("#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n");
+    printf("#include <stdio.h>\n\n");
     yyparse();
     return 0;
 }
