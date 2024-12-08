@@ -6,7 +6,7 @@ PROGRAMA PREX {
     ESCREVER nota1;
 
     LER nota2;
-    ESCREVER nota2;
+    ESCREVER nota2 nota1;
     
     nota1 = 3,14;
     nota1 = nota2;

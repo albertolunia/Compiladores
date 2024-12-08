@@ -70,21 +70,20 @@ expressao: operandos { $$ = $1; }
 
 operandos: T_VAR { $$ = $1; }
     | T_FLOAT { $$ = $1; }
-    | T_PARENTESISOPEN expressao T_PARENTESISCLOSE { $$ = $2; }
     ;
 
 entrada: T_ENTRADA lista_entradas T_SEMICOLON
     ;
 
 lista_entradas: T_VAR {printf("scanf(\"%%f\", &%s);\n", $1);}
-    | lista_entradas T_COMMA T_VAR
+    | lista_entradas T_VAR {printf("scanf(\"%%f\", &%s);\n", $2);}
     ;
 
 saida: T_SAIDA lista_saidas T_SEMICOLON
     ;
 
 lista_saidas: T_VAR { printf("printf(\"%%f\", %s);\n", $1); }
-    | lista_saidas T_COMMA T_VAR
+    | lista_saidas T_VAR { printf("printf(\"%%f\", %s);\n", $2); }
     ;
 
 %%
