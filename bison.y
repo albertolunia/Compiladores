@@ -13,11 +13,13 @@ void yyerror(const char *s);
 %token T_KEYWORD T_PROGRAMA T_PREX
 %token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA
 
+%left T_OPARI
+
 %union {
     char *str;
 }
 
-%type <str> varias_variaveis sequencia codigo entrada saida
+%type <str> varias_variaveis expressao codigo entrada saida operador operandos
 
 %start programa
 
@@ -46,39 +48,46 @@ bloco_codigos: codigo
     | bloco_codigos entradaSaida
     ;
 
-codigo: T_VAR T_ASSIGN T_FLOAT T_SEMICOLON { printf("%s = %s;\n", $1, $3); }
-    | T_VAR T_ASSIGN T_OPARI sequencia T_SEMICOLON { printf("%s = %s;\n", $1, $4); $$ = $1; }
+codigo: T_VAR T_ASSIGN expressao T_SEMICOLON { printf("%s = %s;\n", $1, $3); $$ = $1; }
     ;
 
 entradaSaida: entrada
     | saida
     ;
 
-sequencia: T_VAR { $$ = $1; }
-    | T_FLOAT
-    | sequencia T_FLOAT { 
-        char temp[100];
-        sprintf(temp, "%s * %s", $1, $2);
-        $$ = strdup(temp);
-    }
-    | sequencia T_VAR { 
-        char temp[100];
-        sprintf(temp, "%s * %s", $1, $2);
-        $$ = strdup(temp);
-    }
-    | sequencia T_OPARI { 
-        char temp[100];
-        if ($2[0] == '+') {
-            sprintf(temp, "%s + ", $1);
-        } else if ($2[0] == '*') {
-            sprintf(temp, "%s * ", $1);
-        } else if ($2[0] == '/') {
-            sprintf(temp, "%s / ", $1);
-        } else if ($2[0] == '-') {
-            sprintf(temp, "%s - ", $1);
+expressao: operador operandos {
+              $$ = $2;
+          }
+        | T_FLOAT { $$ = $1; }
+        | T_VAR { $$ = $1; }
+         ;
+
+operador: T_OPARI { $$ = $1; }
+        ;
+
+operandos: T_FLOAT { $$ = $1; }
+         | T_VAR { $$ = $1; }
+         | operandos operador T_FLOAT {
+               char temp[100];
+               sprintf(temp, "(%s %s %s)", $1, $2, $3);
+               $$ = strdup(temp);
+           }
+        | operandos operador T_VAR {
+            char temp[100];
+            sprintf(temp, "(%s %s %s)", $1, $2, $3);
+            $$ = strdup(temp);
         }
-        $$ = strdup(temp);
-    }
+        | operandos T_FLOAT {
+            char temp[100];
+            sprintf(temp, "(%s %s)", $1, $2);
+            $$ = strdup(temp);
+         ;
+        }
+        | operandos T_VAR {
+            char temp[100];
+            sprintf(temp, "(%s %s)", $1, $2);
+            $$ = strdup(temp);
+        }
     ;
 
 entrada: T_ENTRADA lista_entradas T_SEMICOLON
