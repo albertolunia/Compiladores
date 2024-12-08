@@ -1191,7 +1191,7 @@ yyreduce:
 #line 70 "bison.y"
                                       {
                char temp[100];
-               sprintf(temp, "(%s %s %s)", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
+               sprintf(temp, "%s %s %s", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
                (yyval.str) = strdup(temp);
            }
 #line 1198 "bison.tab.c"
@@ -1201,7 +1201,7 @@ yyreduce:
 #line 75 "bison.y"
                                    {
             char temp[100];
-            sprintf(temp, "(%s %s %s)", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
+            sprintf(temp, "%s %s %s", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
             (yyval.str) = strdup(temp);
         }
 #line 1208 "bison.tab.c"
@@ -1211,7 +1211,7 @@ yyreduce:
 #line 80 "bison.y"
                             {
             char temp[100];
-            sprintf(temp, "(%s %s)", (yyvsp[-1].str), (yyvsp[0].str));
+            sprintf(temp, "%s %s", (yyvsp[-1].str), (yyvsp[0].str));
             (yyval.str) = strdup(temp);
          ;
         }
@@ -1222,7 +1222,7 @@ yyreduce:
 #line 86 "bison.y"
                           {
             char temp[100];
-            sprintf(temp, "(%s %s)", (yyvsp[-1].str), (yyvsp[0].str));
+            sprintf(temp, "%s %s", (yyvsp[-1].str), (yyvsp[0].str));
             (yyval.str) = strdup(temp);
         }
 #line 1229 "bison.tab.c"

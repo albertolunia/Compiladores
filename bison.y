@@ -69,23 +69,23 @@ operandos: T_FLOAT { $$ = $1; }
          | T_VAR { $$ = $1; }
          | operandos operador T_FLOAT {
                char temp[100];
-               sprintf(temp, "(%s %s %s)", $1, $2, $3);
+               sprintf(temp, "%s %s %s", $1, $2, $3);
                $$ = strdup(temp);
            }
         | operandos operador T_VAR {
             char temp[100];
-            sprintf(temp, "(%s %s %s)", $1, $2, $3);
+            sprintf(temp, "%s %s %s", $1, $2, $3);
             $$ = strdup(temp);
         }
         | operandos T_FLOAT {
             char temp[100];
-            sprintf(temp, "(%s %s)", $1, $2);
+            sprintf(temp, "%s %s", $1, $2);
             $$ = strdup(temp);
          ;
         }
         | operandos T_VAR {
             char temp[100];
-            sprintf(temp, "(%s %s)", $1, $2);
+            sprintf(temp, "%s %s", $1, $2);
             $$ = strdup(temp);
         }
     ;
