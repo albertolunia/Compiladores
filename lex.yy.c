@@ -784,17 +784,17 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 14 "tokens.l"
-{ printf(" = "); yylval.str = strdup(yytext); return T_ASSIGN; }
+{ yylval.str = strdup(yytext); return T_ASSIGN; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 15 "tokens.l"
-{ printf(";\n"); yylval.str = strdup(yytext); return T_SEMICOLON; }
+{ yylval.str = strdup(yytext); return T_SEMICOLON; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 16 "tokens.l"
-{ printf(", "); yylval.str = strdup(yytext); return T_COMMA; }
+{ yylval.str = strdup(yytext); return T_COMMA; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
@@ -844,22 +844,22 @@ YY_RULE_SETUP
 case 13:
 YY_RULE_SETUP
 #line 33 "tokens.l"
-{ printf("+ "); yylval.str = strdup(yytext); return T_OPARI; }
+{ yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 34 "tokens.l"
-{ printf("- "); yylval.str = strdup(yytext); return T_OPARI; }
+{ yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 35 "tokens.l"
-{ printf("* "); yylval.str = strdup(yytext); return T_OPARI; }
+{ yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 36 "tokens.l"
-{ printf("/ "); yylval.str = strdup(yytext); return T_OPARI; }
+{ yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP

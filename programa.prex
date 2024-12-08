@@ -1,22 +1,15 @@
 PROGRAMA PREX {
-    FLOAT nota1, nota2, peso1, peso2, soma, divisor, media;
+    FLOAT nota1;
+    FLOAT nota2, nota3;
 
-    ESCREVER nota1;
-    
 	LER nota1;
-    ESCREVER peso1;
-    LER peso1;
-    
-    ESCREVER nota2;
+    ESCREVER nota1;
+
     LER nota2;
-    ESCREVER peso2;
-    LER peso2;
+    ESCREVER nota2;
     
-    soma = * nota1 peso1;
-    soma = * 3,42 3,1;
-    divisor = + peso1 peso2;
-    soma = + soma * nota2 peso2;
-    media = / soma divisor;
-    
-    ESCREVER media;
+    nota1 = 3,14;
+    nota2 = + nota1 nota3;
+    nota2 = + nota1 nota3 + nota1 + nota2;
+
 }

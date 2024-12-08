@@ -11,9 +11,9 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 %%
 
-"="                         { printf(" = "); yylval.str = strdup(yytext); return T_ASSIGN; }
-";"                         { printf(";\n"); yylval.str = strdup(yytext); return T_SEMICOLON; }
-","                         { printf(", "); yylval.str = strdup(yytext); return T_COMMA; }
+"="                         { yylval.str = strdup(yytext); return T_ASSIGN; }
+";"                         { yylval.str = strdup(yytext); return T_SEMICOLON; }
+","                         { yylval.str = strdup(yytext); return T_COMMA; }
 
 "FLOAT"                     { printf("float "); yylval.str = strdup(yytext); return T_KEYWORD; }
 "CHAR"                      { printf("char "); yylval.str = strdup(yytext); return T_KEYWORD; }
@@ -30,10 +30,10 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 
 {CARACTERE}                 { printf("%s", yytext); yylval.str = strdup(yytext); return T_CHAR; }
 
-"+"                         { printf("+ "); yylval.str = strdup(yytext); return T_OPARI; }
-"-"                         { printf("- "); yylval.str = strdup(yytext); return T_OPARI; }
-"*"                         { printf("* "); yylval.str = strdup(yytext); return T_OPARI; }
-"/"                         { printf("/ "); yylval.str = strdup(yytext); return T_OPARI; }
+"+"                         { yylval.str = strdup(yytext); return T_OPARI; }
+"-"                         { yylval.str = strdup(yytext); return T_OPARI; }
+"*"                         { yylval.str = strdup(yytext); return T_OPARI; }
+"/"                         { yylval.str = strdup(yytext); return T_OPARI; }
 
 
 "{"                         { printf("{\n"); yylval.str = strdup(yytext); return T_CHAVESOPEN; }

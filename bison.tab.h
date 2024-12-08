@@ -61,9 +61,9 @@ extern int yydebug;
     T_OPARI = 262,                 /* T_OPARI  */
     T_ASSIGN = 263,                /* T_ASSIGN  */
     T_SEMICOLON = 264,             /* T_SEMICOLON  */
-    T_KEYWORD = 265,               /* T_KEYWORD  */
-    T_ENTRADA = 266,               /* T_ENTRADA  */
-    T_SAIDA = 267,                 /* T_SAIDA  */
+    T_ENTRADA = 265,               /* T_ENTRADA  */
+    T_SAIDA = 266,                 /* T_SAIDA  */
+    T_KEYWORD = 267,               /* T_KEYWORD  */
     T_PROGRAMA = 268,              /* T_PROGRAMA  */
     T_PREX = 269,                  /* T_PREX  */
     T_CHAVESOPEN = 270,            /* T_CHAVESOPEN  */
