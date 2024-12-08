@@ -13,8 +13,6 @@ void yyerror(const char *s);
 %token T_KEYWORD T_PROGRAMA T_PREX
 %token T_CHAVESOPEN T_CHAVESCLOSE T_PARENTESISOPEN T_PARENTESISCLOSE T_COMMA
 
-%left T_OPARI
-
 %union {
     char *str;
 }

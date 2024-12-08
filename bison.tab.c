@@ -526,9 +526,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    28,    28,    29,    30,    31,    34,    35,    38,    41,
-      42,    45,    46,    47,    48,    51,    54,    55,    58,    59,
-      64,    71,    72,    75,    78,    79,    82,    85,    86
+       0,    26,    26,    27,    28,    29,    32,    33,    36,    39,
+      40,    43,    44,    45,    46,    49,    52,    53,    56,    57,
+      62,    69,    70,    73,    76,    77,    80,    83,    84
 };
 #endif
 
@@ -1117,37 +1117,37 @@ yyreduce:
   switch (yyn)
     {
   case 8: /* variavel: T_KEYWORD varias_variaveis T_SEMICOLON  */
-#line 38 "bison.y"
+#line 36 "bison.y"
                                                  { printf(";\n"); }
 #line 1123 "bison.tab.c"
     break;
 
   case 9: /* varias_variaveis: T_VAR  */
-#line 41 "bison.y"
+#line 39 "bison.y"
                         { printf("%s", (yyvsp[0].str)); }
 #line 1129 "bison.tab.c"
     break;
 
   case 10: /* varias_variaveis: varias_variaveis T_COMMA T_VAR  */
-#line 42 "bison.y"
+#line 40 "bison.y"
                                      { printf(", %s", (yyvsp[0].str)); }
 #line 1135 "bison.tab.c"
     break;
 
   case 15: /* codigo: T_VAR T_ASSIGN expressao T_SEMICOLON  */
-#line 51 "bison.y"
+#line 49 "bison.y"
                                              { printf("\t%s = %s;\n", (yyvsp[-3].str), (yyvsp[-1].str)); (yyval.str) = (yyvsp[-3].str); }
 #line 1141 "bison.tab.c"
     break;
 
   case 18: /* expressao: operandos  */
-#line 58 "bison.y"
+#line 56 "bison.y"
                      { (yyval.str) = (yyvsp[0].str); }
 #line 1147 "bison.tab.c"
     break;
 
   case 19: /* expressao: T_OPARI operandos operandos  */
-#line 59 "bison.y"
+#line 57 "bison.y"
                                   { 
         char temp[100];
         sprintf(temp, "(%s %s %s)", (yyvsp[-1].str), (yyvsp[-2].str), (yyvsp[0].str));
@@ -1157,7 +1157,7 @@ yyreduce:
     break;
 
   case 20: /* expressao: expressao T_OPARI operandos  */
-#line 64 "bison.y"
+#line 62 "bison.y"
                                   { 
         char temp[100];
         sprintf(temp, "(%s %s %s)", (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[0].str));
@@ -1167,37 +1167,37 @@ yyreduce:
     break;
 
   case 21: /* operandos: T_VAR  */
-#line 71 "bison.y"
+#line 69 "bison.y"
                  { (yyval.str) = (yyvsp[0].str); }
 #line 1173 "bison.tab.c"
     break;
 
   case 22: /* operandos: T_FLOAT  */
-#line 72 "bison.y"
+#line 70 "bison.y"
               { (yyval.str) = (yyvsp[0].str); }
 #line 1179 "bison.tab.c"
     break;
 
   case 24: /* lista_entradas: T_VAR  */
-#line 78 "bison.y"
+#line 76 "bison.y"
                       {printf("\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
 #line 1185 "bison.tab.c"
     break;
 
   case 25: /* lista_entradas: lista_entradas T_VAR  */
-#line 79 "bison.y"
+#line 77 "bison.y"
                            {printf("\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
 #line 1191 "bison.tab.c"
     break;
 
   case 27: /* lista_saidas: T_VAR  */
-#line 85 "bison.y"
+#line 83 "bison.y"
                     { printf("\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
 #line 1197 "bison.tab.c"
     break;
 
   case 28: /* lista_saidas: lista_saidas T_VAR  */
-#line 86 "bison.y"
+#line 84 "bison.y"
                          { printf("\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
 #line 1203 "bison.tab.c"
     break;
@@ -1396,7 +1396,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 89 "bison.y"
+#line 87 "bison.y"
 
 
 void yyerror(const char *msg) {
