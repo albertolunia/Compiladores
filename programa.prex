@@ -10,7 +10,7 @@ PROGRAMA PREX {
     
     nota1 = 3,14;
     nota1 = nota2;
-    nota2 = + nota1 nota3;
-    nota2 = + nota1 nota3 + nota1 + nota2;
+    nota2 = - nota1 nota3;
+    nota2 = + nota1 3,5 - nota3 - nota1 / nota2;
 
 }

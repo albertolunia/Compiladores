@@ -19,7 +19,7 @@ void yyerror(const char *s);
     char *str;
 }
 
-%type <str> varias_variaveis expressao codigo entrada saida operador operandos
+%type <str> varias_variaveis expressao codigo entrada saida operandos
 
 %start programa
 
@@ -55,39 +55,22 @@ entradaSaida: entrada
     | saida
     ;
 
-expressao: operador operandos {
-              $$ = $2;
-          }
-        | T_FLOAT { $$ = $1; }
-        | T_VAR { $$ = $1; }
-         ;
+expressao: operandos { $$ = $1; }
+    | T_OPARI operandos operandos { 
+        char temp[100];
+        sprintf(temp, "%s %s %s", $2, $1, $3);
+        $$ = strdup(temp);
+    }
+    | expressao T_OPARI operandos { 
+        char temp[100];
+        sprintf(temp, "%s %s %s", $1, $2, $3);
+        $$ = strdup(temp);
+    }
+    ;
 
-operador: T_OPARI { $$ = $1; }
-        ;
-
-operandos: T_FLOAT { $$ = $1; }
-         | T_VAR { $$ = $1; }
-         | operandos operador T_FLOAT {
-               char temp[100];
-               sprintf(temp, "%s %s %s", $1, $2, $3);
-               $$ = strdup(temp);
-           }
-        | operandos operador T_VAR {
-            char temp[100];
-            sprintf(temp, "%s %s %s", $1, $2, $3);
-            $$ = strdup(temp);
-        }
-        | operandos T_FLOAT {
-            char temp[100];
-            sprintf(temp, "%s %s", $1, $2);
-            $$ = strdup(temp);
-         ;
-        }
-        | operandos T_VAR {
-            char temp[100];
-            sprintf(temp, "%s %s", $1, $2);
-            $$ = strdup(temp);
-        }
+operandos: T_VAR { $$ = $1; }
+    | T_FLOAT { $$ = $1; }
+    | T_PARENTESISOPEN expressao T_PARENTESISCLOSE { $$ = $2; }
     ;
 
 entrada: T_ENTRADA lista_entradas T_SEMICOLON
