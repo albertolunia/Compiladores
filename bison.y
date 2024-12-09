@@ -8,6 +8,7 @@ void yyerror(const char *s);
 #define YYDEBUG 1
 
 FILE *output_file;
+char *opari_ptr = NULL;
 
 %}
 
@@ -49,28 +50,38 @@ bloco_codigos: codigo
     | bloco_codigos entradaSaida
     ;
 
-codigo: T_VAR T_ASSIGN expressao T_SEMICOLON { fprintf(output_file, "\t%s = %s;\n", $1, $3); $$ = $1; }
+codigo: T_VAR T_ASSIGN expressao T_SEMICOLON { fprintf(output_file, "\t%s = %s;\n", $1, $3); $$ = strdup($3); }
     ;
 
 entradaSaida: entrada
     | saida
     ;
 
-expressao: operandos { $$ = $1; }
-    | T_OPARI operandos operandos { 
+expressao: operandos {
+        $$ = strdup($1);
+    }
+    | T_OPARI operandos {
         char temp[100];
-        sprintf(temp, "(%s %s %s)", $2, $1, $3);
+        sprintf(temp, "%s %s", $1, $2);
+        opari_ptr = strdup($1);
         $$ = strdup(temp);
     }
-    | expressao T_OPARI operandos { 
+    | T_OPARI operandos expressao {
         char temp[100];
-        sprintf(temp, "(%s %s %s)", $1, $2, $3);
+        sprintf(temp, "%s %s %s", $2, $1, $3);
+        opari_ptr = strdup($1);
+        $$ = strdup(temp);
+    }
+    | operandos expressao {
+        if (!opari_ptr);
+        char temp[100];
+        sprintf(temp, "%s %s %s", $1, opari_ptr, $2);
         $$ = strdup(temp);
     }
     ;
 
-operandos: T_VAR { $$ = $1; }
-    | T_FLOAT { $$ = $1; }
+operandos: T_VAR { $$ = strdup($1); }
+    | T_FLOAT { $$ = strdup($1); }
     ;
 
 entrada: T_ENTRADA lista_entradas T_SEMICOLON
