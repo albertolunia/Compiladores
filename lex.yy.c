@@ -503,8 +503,10 @@ char *yytext;
 #include <stdio.h>
 #include "bison.tab.h"
 
-#line 507 "lex.yy.c"
-#line 508 "lex.yy.c"
+extern FILE *output_file;
+
+#line 509 "lex.yy.c"
+#line 510 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -721,10 +723,10 @@ YY_DECL
 		}
 
 	{
-#line 12 "tokens.l"
+#line 14 "tokens.l"
 
 
-#line 728 "lex.yy.c"
+#line 730 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -783,132 +785,132 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "tokens.l"
+#line 16 "tokens.l"
 { yylval.str = strdup(yytext); return T_ASSIGN; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "tokens.l"
+#line 17 "tokens.l"
 { yylval.str = strdup(yytext); return T_SEMICOLON; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "tokens.l"
+#line 18 "tokens.l"
 { yylval.str = strdup(yytext); return T_COMMA; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "tokens.l"
-{ printf("\tfloat "); yylval.str = strdup(yytext); return T_KEYWORD; }
+#line 20 "tokens.l"
+{ fprintf(output_file, "\tfloat "); yylval.str = strdup(yytext); return T_KEYWORD; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 19 "tokens.l"
+#line 21 "tokens.l"
 { printf("char "); yylval.str = strdup(yytext); return T_KEYWORD; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 20 "tokens.l"
+#line 22 "tokens.l"
 { printf("boolean "); yylval.str = strdup(yytext); return T_KEYWORD; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 22 "tokens.l"
+#line 24 "tokens.l"
 { yylval.str = strdup(yytext); return T_ENTRADA; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 23 "tokens.l"
+#line 25 "tokens.l"
 { yylval.str = strdup(yytext); return T_SAIDA; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 25 "tokens.l"
-{ printf("int "); yylval.str = strdup(yytext); return T_PROGRAMA; }
+#line 27 "tokens.l"
+{ fprintf(output_file, "int "); yylval.str = strdup(yytext); return T_PROGRAMA; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 27 "tokens.l"
-{ printf("main() "); yylval.str = strdup(yytext); return T_PREX; }
+#line 29 "tokens.l"
+{ fprintf(output_file, "main() "); yylval.str = strdup(yytext); return T_PREX; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 29 "tokens.l"
+#line 31 "tokens.l"
 { yylval.str = strdup(yytext); return T_FLOAT; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 31 "tokens.l"
+#line 33 "tokens.l"
 { printf("%s", yytext); yylval.str = strdup(yytext); return T_CHAR; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 33 "tokens.l"
+#line 35 "tokens.l"
 { yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 34 "tokens.l"
+#line 36 "tokens.l"
 { yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 35 "tokens.l"
+#line 37 "tokens.l"
 { yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 36 "tokens.l"
+#line 38 "tokens.l"
 { yylval.str = strdup(yytext); return T_OPARI; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 39 "tokens.l"
-{ printf("{\n"); yylval.str = strdup(yytext); return T_CHAVESOPEN; }
+#line 41 "tokens.l"
+{ fprintf(output_file, "{\n"); yylval.str = strdup(yytext); return T_CHAVESOPEN; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 40 "tokens.l"
-{ printf("\treturn 0;\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
+#line 42 "tokens.l"
+{ fprintf(output_file, "\treturn 0;\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 42 "tokens.l"
+#line 44 "tokens.l"
 { yylval.str = strdup(yytext); return T_PARENTESISOPEN; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 43 "tokens.l"
+#line 45 "tokens.l"
 { yylval.str = strdup(yytext); return T_PARENTESISCLOSE; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 46 "tokens.l"
+#line 48 "tokens.l"
 { yylval.str = strdup(yytext); return T_VAR; }
 	YY_BREAK
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 48 "tokens.l"
+#line 50 "tokens.l"
 { printf("%s", yytext); yylval.str = strdup(yytext); return T_STRING; }
 	YY_BREAK
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 50 "tokens.l"
+#line 52 "tokens.l"
 { /* Ignora espaços, tabulações e quebras de linha */ }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 52 "tokens.l"
+#line 54 "tokens.l"
 { printf("Caractere não reconhecido: '%s'\n", yytext); return -1; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 54 "tokens.l"
+#line 56 "tokens.l"
 ECHO;
 	YY_BREAK
-#line 912 "lex.yy.c"
+#line 914 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1913,7 +1915,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 54 "tokens.l"
+#line 56 "tokens.l"
 
 
 int yywrap(void) {

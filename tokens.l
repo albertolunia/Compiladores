@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "bison.tab.h"
 
+extern FILE *output_file;
+
 %}
 
 VARIAVEL            [A-Za-z][A-Za-z0-9]{0,9}
@@ -15,16 +17,16 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 ";"                         { yylval.str = strdup(yytext); return T_SEMICOLON; }
 ","                         { yylval.str = strdup(yytext); return T_COMMA; }
 
-"FLOAT"                     { printf("\tfloat "); yylval.str = strdup(yytext); return T_KEYWORD; }
+"FLOAT"                     { fprintf(output_file, "\tfloat "); yylval.str = strdup(yytext); return T_KEYWORD; }
 "CHAR"                      { printf("char "); yylval.str = strdup(yytext); return T_KEYWORD; }
 "BOOL"                      { printf("boolean "); yylval.str = strdup(yytext); return T_KEYWORD; }
 
 "LER"                       { yylval.str = strdup(yytext); return T_ENTRADA; }
 "ESCREVER"                  { yylval.str = strdup(yytext); return T_SAIDA; }
 
-"PROGRAMA"                  { printf("int "); yylval.str = strdup(yytext); return T_PROGRAMA; }
+"PROGRAMA"                  { fprintf(output_file, "int "); yylval.str = strdup(yytext); return T_PROGRAMA; }
 
-"PREX"                      { printf("main() "); yylval.str = strdup(yytext); return T_PREX; }
+"PREX"                      { fprintf(output_file, "main() "); yylval.str = strdup(yytext); return T_PREX; }
 
 {FLOAT}                     { yylval.str = strdup(yytext); return T_FLOAT; }
 
@@ -36,8 +38,8 @@ CARACTERE           \'([@_#\+\-*/.: A-Za-z0-9$]|\\n)\'
 "/"                         { yylval.str = strdup(yytext); return T_OPARI; }
 
 
-"{"                         { printf("{\n"); yylval.str = strdup(yytext); return T_CHAVESOPEN; }
-"}"                         { printf("\treturn 0;\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
+"{"                         { fprintf(output_file, "{\n"); yylval.str = strdup(yytext); return T_CHAVESOPEN; }
+"}"                         { fprintf(output_file, "\treturn 0;\n}\n"); yylval.str = strdup(yytext); return T_CHAVESCLOSE; }
 
 "("                         { yylval.str = strdup(yytext); return T_PARENTESISOPEN; }
 ")"                         { yylval.str = strdup(yytext); return T_PARENTESISCLOSE; }
