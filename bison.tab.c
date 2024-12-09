@@ -477,7 +477,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  14
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  29
+#define YYNRULES  28
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  48
 
@@ -532,7 +532,7 @@ static const yytype_int8 yyrline[] =
 {
        0,    30,    30,    31,    32,    33,    36,    37,    40,    43,
       44,    47,    48,    49,    50,    53,    56,    57,    60,    63,
-      69,    75,    83,    84,    87,    90,    91,    94,    97,    98
+      69,    77,    78,    81,    84,    85,    88,    91,    92
 };
 #endif
 
@@ -592,10 +592,10 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     0,     0,     0,     1,     0,     0,     0,     0,     0,
-       5,     0,     6,     0,    11,    12,    16,    17,     0,    25,
-       0,    28,     0,     9,     0,     4,     7,     0,     3,    13,
-      14,    22,    23,     0,     0,    18,    26,    24,    29,    27,
-       8,     0,     2,    19,    15,    21,    10,    20
+       5,     0,     6,     0,    11,    12,    16,    17,     0,    24,
+       0,    27,     0,     9,     0,     4,     7,     0,     3,    13,
+      14,    21,    22,     0,     0,    18,    25,    23,    28,    26,
+       8,     0,     2,     0,    15,    20,    10,    19
 };
 
 /* YYPGOTO[NTERM-NUM].  */
@@ -649,15 +649,15 @@ static const yytype_int8 yyr1[] =
 {
        0,    20,    21,    21,    21,    21,    22,    22,    23,    24,
       24,    25,    25,    25,    25,    26,    27,    27,    28,    28,
-      28,    28,    29,    29,    30,    31,    31,    32,    33,    33
+      28,    29,    29,    30,    31,    31,    32,    33,    33
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     6,     5,     5,     4,     1,     2,     3,     1,
-       3,     1,     1,     2,     2,     4,     1,     1,     1,     2,
-       3,     2,     1,     1,     3,     1,     2,     3,     1,     2
+       3,     1,     1,     2,     2,     4,     1,     1,     1,     3,
+       2,     1,     1,     3,     1,     2,     3,     1,     2
 };
 
 
@@ -1152,77 +1152,66 @@ yyreduce:
 #line 1153 "bison.tab.c"
     break;
 
-  case 19: /* expressao: T_OPARI operandos  */
+  case 19: /* expressao: T_OPARI operandos expressao  */
 #line 63 "bison.y"
-                        {
-        char temp[100];
-        sprintf(temp, "%s %s", (yyvsp[-1].str), (yyvsp[0].str));
-        opari_ptr = strdup((yyvsp[-1].str));
-        (yyval.str) = strdup(temp);
-    }
-#line 1164 "bison.tab.c"
-    break;
-
-  case 20: /* expressao: T_OPARI operandos expressao  */
-#line 69 "bison.y"
                                   {
         char temp[100];
         sprintf(temp, "%s %s %s", (yyvsp[-1].str), (yyvsp[-2].str), (yyvsp[0].str));
         opari_ptr = strdup((yyvsp[-2].str));
         (yyval.str) = strdup(temp);
     }
-#line 1175 "bison.tab.c"
+#line 1164 "bison.tab.c"
     break;
 
-  case 21: /* expressao: operandos expressao  */
-#line 75 "bison.y"
+  case 20: /* expressao: operandos expressao  */
+#line 69 "bison.y"
                           {
         if (!opari_ptr);
         char temp[100];
         sprintf(temp, "%s %s %s", (yyvsp[-1].str), opari_ptr, (yyvsp[0].str));
         (yyval.str) = strdup(temp);
     }
-#line 1186 "bison.tab.c"
+#line 1175 "bison.tab.c"
     break;
 
-  case 22: /* operandos: T_VAR  */
-#line 83 "bison.y"
+  case 21: /* operandos: T_VAR  */
+#line 77 "bison.y"
                  { (yyval.str) = strdup((yyvsp[0].str)); }
-#line 1192 "bison.tab.c"
+#line 1181 "bison.tab.c"
     break;
 
-  case 23: /* operandos: T_FLOAT  */
-#line 84 "bison.y"
+  case 22: /* operandos: T_FLOAT  */
+#line 78 "bison.y"
               { (yyval.str) = strdup((yyvsp[0].str)); }
-#line 1198 "bison.tab.c"
+#line 1187 "bison.tab.c"
     break;
 
-  case 25: /* lista_entradas: T_VAR  */
-#line 90 "bison.y"
+  case 24: /* lista_entradas: T_VAR  */
+#line 84 "bison.y"
                       {fprintf(output_file, "\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
-#line 1204 "bison.tab.c"
+#line 1193 "bison.tab.c"
     break;
 
-  case 26: /* lista_entradas: lista_entradas T_VAR  */
-#line 91 "bison.y"
+  case 25: /* lista_entradas: lista_entradas T_VAR  */
+#line 85 "bison.y"
                            {fprintf(output_file, "\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
-#line 1210 "bison.tab.c"
+#line 1199 "bison.tab.c"
     break;
 
-  case 28: /* lista_saidas: T_VAR  */
-#line 97 "bison.y"
+  case 27: /* lista_saidas: T_VAR  */
+#line 91 "bison.y"
                     {fprintf(output_file, "\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
-#line 1216 "bison.tab.c"
+#line 1205 "bison.tab.c"
     break;
 
-  case 29: /* lista_saidas: lista_saidas T_VAR  */
-#line 98 "bison.y"
+  case 28: /* lista_saidas: lista_saidas T_VAR  */
+#line 92 "bison.y"
                          {fprintf(output_file, "\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
-#line 1222 "bison.tab.c"
+#line 1211 "bison.tab.c"
     break;
 
 
-#line 1226 "bison.tab.c"
+#line 1215 "bison.tab.c"
 
       default: break;
     }
@@ -1415,7 +1404,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 101 "bison.y"
+#line 95 "bison.y"
 
 
 void yyerror(const char *msg) {

@@ -60,12 +60,6 @@ entradaSaida: entrada
 expressao: operandos {
         $$ = strdup($1);
     }
-    | T_OPARI operandos {
-        char temp[100];
-        sprintf(temp, "%s %s", $1, $2);
-        opari_ptr = strdup($1);
-        $$ = strdup(temp);
-    }
     | T_OPARI operandos expressao {
         char temp[100];
         sprintf(temp, "%s %s %s", $2, $1, $3);
