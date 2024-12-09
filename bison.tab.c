@@ -532,7 +532,7 @@ static const yytype_int8 yyrline[] =
 {
        0,    30,    30,    31,    32,    33,    36,    37,    40,    43,
       44,    47,    48,    49,    50,    53,    56,    57,    60,    63,
-      69,    77,    78,    81,    84,    85,    88,    91,    92
+      69,    76,    77,    80,    83,    84,    87,    90,    91
 };
 #endif
 
@@ -1166,52 +1166,51 @@ yyreduce:
   case 20: /* expressao: operandos expressao  */
 #line 69 "bison.y"
                           {
-        if (!opari_ptr);
         char temp[100];
         sprintf(temp, "%s %s %s", (yyvsp[-1].str), opari_ptr, (yyvsp[0].str));
         (yyval.str) = strdup(temp);
     }
-#line 1175 "bison.tab.c"
+#line 1174 "bison.tab.c"
     break;
 
   case 21: /* operandos: T_VAR  */
-#line 77 "bison.y"
+#line 76 "bison.y"
                  { (yyval.str) = strdup((yyvsp[0].str)); }
-#line 1181 "bison.tab.c"
+#line 1180 "bison.tab.c"
     break;
 
   case 22: /* operandos: T_FLOAT  */
-#line 78 "bison.y"
+#line 77 "bison.y"
               { (yyval.str) = strdup((yyvsp[0].str)); }
-#line 1187 "bison.tab.c"
+#line 1186 "bison.tab.c"
     break;
 
   case 24: /* lista_entradas: T_VAR  */
-#line 84 "bison.y"
+#line 83 "bison.y"
                       {fprintf(output_file, "\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
-#line 1193 "bison.tab.c"
+#line 1192 "bison.tab.c"
     break;
 
   case 25: /* lista_entradas: lista_entradas T_VAR  */
-#line 85 "bison.y"
+#line 84 "bison.y"
                            {fprintf(output_file, "\tscanf(\"%%f\", &%s);\n", (yyvsp[0].str));}
-#line 1199 "bison.tab.c"
+#line 1198 "bison.tab.c"
     break;
 
   case 27: /* lista_saidas: T_VAR  */
-#line 91 "bison.y"
+#line 90 "bison.y"
                     {fprintf(output_file, "\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
-#line 1205 "bison.tab.c"
+#line 1204 "bison.tab.c"
     break;
 
   case 28: /* lista_saidas: lista_saidas T_VAR  */
-#line 92 "bison.y"
+#line 91 "bison.y"
                          {fprintf(output_file, "\tprintf(\"%%f\\n\", %s);\n", (yyvsp[0].str)); }
-#line 1211 "bison.tab.c"
+#line 1210 "bison.tab.c"
     break;
 
 
-#line 1215 "bison.tab.c"
+#line 1214 "bison.tab.c"
 
       default: break;
     }
@@ -1404,7 +1403,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 95 "bison.y"
+#line 94 "bison.y"
 
 
 void yyerror(const char *msg) {

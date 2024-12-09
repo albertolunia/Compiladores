@@ -67,7 +67,6 @@ expressao: operandos {
         $$ = strdup(temp);
     }
     | operandos expressao {
-        if (!opari_ptr);
         char temp[100];
         sprintf(temp, "%s %s %s", $1, opari_ptr, $2);
         $$ = strdup(temp);
