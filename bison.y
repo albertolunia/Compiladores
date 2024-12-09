@@ -8,7 +8,6 @@ void yyerror(const char *s);
 #define YYDEBUG 1
 
 FILE *output_file;
-char *opari_ptr = NULL;
 
 %}
 
@@ -63,12 +62,11 @@ expressao: operandos {
     | T_OPARI operandos expressao {
         char temp[100];
         sprintf(temp, "%s %s %s", $2, $1, $3);
-        opari_ptr = strdup($1);
         $$ = strdup(temp);
     }
     | operandos expressao {
         char temp[100];
-        sprintf(temp, "%s %s %s", $1, opari_ptr, $2);
+        sprintf(temp, "%s %s", $1, $2);
         $$ = strdup(temp);
     }
     ;

@@ -9,8 +9,8 @@ int main() {
 	printf("%f\n", nota2);
 	nota1 = 3,14;
 	nota1 = nota2;
-	nota1 = 0,0 + 3,1 (null) 10,45;
-	nota1 = 2,0 + 0,5 * 3,0 * 2,0;
+	nota1 = 0,0 + 3,1 10,45 10,56;
+	nota1 = 2,0 + 0,5 3,0 * 2,0;
 	nota1 = 3,0 - 5,0;
 	nota1 = -3,0 + 5,0;
 	nota1 = -3,0 + -4,0;
